@@ -11,10 +11,8 @@ for (i in 1){
   
   
   write.csv(C_pop[,2:ncol(C_pop)], file = paste(
-    "./C_pop",i,".csv"))
     "C_pop",i,".csv"))
   write.csv(T_pop[,2:ncol(T_pop)], file = paste(
-    "/T_pop",i,".csv"))
     "T_pop",i,".csv"))
 }
 
