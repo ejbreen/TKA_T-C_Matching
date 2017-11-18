@@ -11,8 +11,8 @@ for (i in 1:3){
   
   
   write.csv(C_pop[,2:ncol(C_pop)], file = paste(
-    "C_pop",i,".csv"))
+    "Data/C_pop",i,".csv"))
   write.csv(T_pop[,2:ncol(T_pop)], file = paste(
-    "T_pop",i,".csv"))
+    "Data/T_pop",i,".csv"))
 }
 
