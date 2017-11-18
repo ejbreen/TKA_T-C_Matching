@@ -25,19 +25,13 @@ Matches = pd.Series([   5,     5], index = T_n_sets)
 Timing_Cols = ['T_n', 'matches', 'Setup Time',
                'c1_t','c2_t','c3_t','c4_t', 'reps', 'Solve Time']
 
-fileName_C = "\C_pop "
-fileName_T = "\T_pop "
-fileName_out = "\\timing_data_out_Pd"
 dataSet = D_sets[0]
-fileExt = " .csv"
+fileName_out = "\\timing_data_out_TD"
 writer  = pd.ExcelWriter("%s%s"%(fileName_out, '.xlsx'),
                          engine = 'xlsxwriter')
 
 for dataSet in D_sets:
-    C_pop_full = pd.read_csv("%s%i%s"%(fileName_C, dataSet, fileExt), 
-                             index_col = 0)
-    T_pop_full = pd.read_csv("%s%i%s"%(fileName_T, dataSet, fileExt), 
-                             index_col = 0)
+    C_pop_full, T_pop_full = FNC.Import_DataSets(dataSet)
     
     td = 0 
     TimingData = pd.DataFrame(0, index = list(range(len(T_n_sets)*len(Matches))),
@@ -50,11 +44,12 @@ for dataSet in D_sets:
             T_pop = T_pop_full.head(T_n)
             
             
+            #start the setup timer
+            setup_time = FNC.timerStart()
             
             #set weights for covariates to their min
             weights, mean_T_pop,  dist = FNC.Pop_Calcuations(C_pop, T_pop) 
             
-            setup_time = FNC.timerStart()
             
             #start creating model elements
             Ctrl  = list(range(len(C_pop)))
@@ -116,7 +111,7 @@ for dataSet in D_sets:
             
             m.update()
             
-            setup_time = round(time.clock() - setup_time, 3)
+            setup_time = FNC.timerStop(setup_time, 3)
             
             FNC.printMessage("Start Presolve")
             m.presolve()
