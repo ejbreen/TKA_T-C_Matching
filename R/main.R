@@ -1,18 +1,20 @@
 install.packages("simstudy")
 install.packages("ggplot2")
+library("simstudy")
+library('ggplot2')
 
 
 #https://cran.r-project.org/web/packages/simstudy/vignettes/simstudy.html
 
-#source('T:/Programing/IOE_413/TKA/R/TKA Parameters Input.R')
+#source('R/TKA Parameters Input.R')
 #currently importing data directly into pop sim paramaters file
 
 source('R/TKA population simulation parameters.R')
 
 source('R/TKA population simulation creation.R')
 
-#source('T:/Programing/IOE_413/TKA/R/TKA Calculations.R')
+#source('R/TKA Calculations.R')
 
-#source('T:/Programing/IOE_413/TKA/R/TKA data export.R')
+#source('R/TKA data export.R')
 
 
