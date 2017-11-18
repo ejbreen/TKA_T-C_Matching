@@ -18,9 +18,11 @@ import FNC
 os.chdir(r'/home/evan/TKA_T-C_Matching')
 
 D_sets   = [1, 2, 3]
-T_n_sets =          [   2,     4]
-rounds  = pd.Series([1000,  1000], index = T_n_sets)
-Matches = pd.Series([   5,     5], index = T_n_sets)
+T_n_sets =          [   2,     4,   8,  16, 32, 64, 128, 256, 512, 1024, 2048]
+rounds  = pd.Series([1000,  1000, 100, 100, 50, 50,  25,  25,  10,    5,    5], 
+                    index = T_n_sets)
+Matches = pd.Series([   5,     5,   5,   5,  3,  2,   1,   1,   1,    1,    1], 
+                    index = T_n_sets)
 
 Timing_Cols = ['T_n', 'matches', 'Setup Time',
                'c1_t','c2_t','c3_t','c4_t', 'reps', 'Solve Time']
@@ -37,22 +39,9 @@ writer  = pd.ExcelWriter("%s%s"%(fileName_out, '.xlsx'),
 C_pop_full, T_pop_full = FNC.Import_DataSets(D_sets[0], filePath, fileName_C, 
                                              fileName_T, fileExt)
 
-C_pop, T_pop = FNC.Shrink_pop(C_pop_full, T_pop_full, T_n_sets[0])
+C_pop, T_pop = FNC.Shrink_pop(C_pop_full, T_pop_full, T_n_sets[1])
 
-matches = 1
-
-
-#set weights for covariates to their min
-weights = np.tile(len(T_pop)*.1,len(T_pop.columns))
-weights = pd.DataFrame(weights, index = T_pop.columns)
-weights = weights.T
+weights, mean_T_pop, dist = FNC.Pop_Calcuations(C_pop, T_pop)
 
 
-#set population means to dataframes
-#mean_C_pop = C_pop.mean()
-mean_T_pop = T_pop.mean()
-
-
-#create distance matrix
-dist = scipy.spatial.distance.cdist(C_pop, T_pop, 'braycurtis')
 

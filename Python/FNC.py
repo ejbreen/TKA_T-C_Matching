@@ -23,3 +23,18 @@ def Shrink_pop(C_pop_full, T_pop_full, T_n):
     C_pop = C_pop_full.head(T_n*30)
     T_pop = T_pop_full.head(T_n)
     return C_pop, T_pop
+    
+def Pop_Calcuations(C_pop, T_pop):
+    #set weights for covariates to their min
+    weights = np.tile(len(T_pop)*.1,len(T_pop.columns))
+    weights = pd.DataFrame(weights, index = T_pop.columns)
+    weights = weights.T
+    
+    
+    mean_T_pop = T_pop.mean()
+    
+    
+    #create distance matrix
+    dist = scipy.spatial.distance.cdist(C_pop, T_pop, 'braycurtis')
+    
+    return weights, mean_T_pop, dist
