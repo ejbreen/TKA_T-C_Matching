@@ -10,6 +10,8 @@ import scipy.spatial
 import xlsxwriter
 from gurobipy import *
 import os
+import sys
+import platform
 
 
 def Import_DataSets(dataSet, filePath, fileName_C, fileName_T, fileExt):  
@@ -38,3 +40,15 @@ def Pop_Calcuations(C_pop, T_pop):
     dist = scipy.spatial.distance.cdist(C_pop, T_pop, 'braycurtis')
     
     return weights, mean_T_pop, dist
+
+def Set_WD():
+    def winset():
+        os.chdir(r'D:/Programing/TKA_T-C_Matching')
+    def linset():
+        os.chdir(r'/home/evan/TKA_T-C_Matching')
+    def fluxset():
+        os.chdir(r'/home/evan/TKA_T-C_Matching')
+    setdir = {'Windows' : winset,
+              'Linux'   : linset,
+              'Flux'    : fluxset}
+    setdir[platform.system()]()

@@ -6,16 +6,13 @@ Created on Tue Nov  7 20:32:25 2017
 """
 
 import pandas as pd
-import numpy as np
-import scipy.spatial
-import xlsxwriter
-from gurobipy import *
+
 import sys
 import os
 sys.path.append(os.path.abspath("Python/"))
 import FNC
 
-os.chdir(r'/home/evan/TKA_T-C_Matching')
+FNC.Set_WD()
 
 D_sets   = [1, 2, 3]
 T_n_sets =          [   2,     4,   8,  16, 32, 64, 128, 256, 512, 1024, 2048]
