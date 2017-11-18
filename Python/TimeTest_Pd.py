@@ -12,6 +12,11 @@ import xlsxwriter
 from gurobipy import *
 import time
 
+import sys
+import os
+sys.path.append(os.path.abspath("Python/"))
+import FNC
+
 D_sets   = [1]
 T_n_sets =          [   2,     4]
 rounds  = pd.Series([1000,  1000], index = T_n_sets)
@@ -47,19 +52,10 @@ for dataSet in D_sets:
             
             
             #set weights for covariates to their min
-            weights = np.tile(len(T_pop)*.1,len(T_pop.columns))
+            weights, mean_T_pop,  dist = FNC.Pop_Calcuations(C_pop, T_pop) 
             
+            setup_time = FNC.timerStart()
             
-            #set population means to dataframes
-            #mean_C_pop = C_pop.mean()
-            mean_T_pop = T_pop.mean()
-            
-            
-            #create distance matrix
-            dist = scipy.spatial.distance.cdist(T_pop, C_pop, 'braycurtis')
-            
-            
-            setup_time = time.clock()
             #start creating model elements
             Ctrl  = list(range(len(C_pop)))
             C_pop.index = Ctrl
@@ -80,8 +76,7 @@ for dataSet in D_sets:
             m.Params.OutputFlag = 0
             
             #create variables
-            tm = time.localtime()
-            print "%i:%i:%i"%(tm.tm_hour,tm.tm_min,tm.tm_sec), "Creating Gurobi Variables"
+            FNC.printMessage("Creating Gurobi Variables")
             assign = [[m.addVar(vtype = GRB.BINARY, name = "%i, %i" % (t, c)) 
                         for c in Ctrl] for t in Treat]
             assign = pd.DataFrame(assign, index = Treat, columns = Ctrl)
@@ -90,47 +85,40 @@ for dataSet in D_sets:
             m.update()
             
             #objective fuction
-            tm = time.localtime()
-            print "%i:%i:%i"%(tm.tm_hour,tm.tm_min,tm.tm_sec), "Creating Gurobi Objective Function"
+            FNC.printMessage("Creating Gurobi Objective Function")
             m.setObjective((dist*assign).sum().sum() +  
                     quicksum(weights[i]*z[i] for i in Covar), 
                     sense = GRB.MINIMIZE)
             
             #define the constraints
-            tm = time.localtime()
-            print "%i:%i:%i"%(tm.tm_hour,tm.tm_min,tm.tm_sec), "Creating Gurobi Constraints"
-            c1_t = time.clock()
+            FNC.printMessage("Creating Gurobi Constraints")
+            c1_t = FNC.timerStart()
             m.addConstrs(matches <= assign.T.sum()[t] for t in Treat)
-            tm = time.localtime()
-            print "%i:%i:%i"%(tm.tm_hour,tm.tm_min,tm.tm_sec), "Constraint 1 done"
-            c1_t = round(time.clock()-c1_t,3)
+            FNC.printMessage("Constraint 1 done")
+            c1_t = FNC.timerStop(c1_t, 3)
             
-            c2_t = time.clock()
+            c2_t = FNC.timerStart()
             m.addConstrs(1 >= assign.sum()[c] for c in Ctrl)
-            tm = time.localtime()
-            print "%i:%i:%i"%(tm.tm_hour,tm.tm_min,tm.tm_sec), "Constraint 2 done"
-            c2_t = round(time.clock()-c2_t,3)
+            FNC.printMessage("Constraint 2 done")
+            c2_t = FNC.timerStop(c2_t, 3)
         
-            c3_t = time.clock()
+            c3_t = FNC.timerStart()
             m.addConstrs(z[i] >= quicksum(((assign.T[t]*C_pop[i])/(matches*T_n)).sum()
                     for t in Treat) + mean_T_pop[i] for i in Covar)
-            tm = time.localtime()
-            print "%i:%i:%i"%(tm.tm_hour,tm.tm_min,tm.tm_sec), "Constraint 3 done"
-            c3_t = round(time.clock()-c3_t,3)
+            FNC.printMessage("Constraint 3 done")
+            c3_t = FNC.timerStop(c3_t, 3)
         
-            c4_t = time.clock()
+            c4_t = FNC.timerStart()
             m.addConstrs(z[i] >= -quicksum(((assign.T[t]*C_pop[i])/(matches*T_n)).sum()
                     for t in Treat) - mean_T_pop[i] for i in Covar)    
-            tm = time.localtime()
-            print "%i:%i:%i"%(tm.tm_hour,tm.tm_min,tm.tm_sec), "Constraint 4 done"
-            c4_t = round(time.clock()-c4_t,3)
+            FNC.printMessage("Constraint 4 done")
+            c4_t = FNC.timerStop(c4_t, 3)
             
             m.update()
             
             setup_time = round(time.clock() - setup_time, 3)
             
-            tm = time.localtime()
-            print "%i:%i:%i"%(tm.tm_hour,tm.tm_min,tm.tm_sec), "Start Presolve"
+            FNC.printMessage("Start Presolve")
             m.presolve()
             
             runTimes = pd.Series(range(rounds[T_n]), dtype = np.float)
