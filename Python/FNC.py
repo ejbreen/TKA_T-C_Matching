@@ -12,6 +12,7 @@ from gurobipy import *
 import os
 import sys
 import platform
+import time
 
 
 def Import_DataSets(dataSet, filePath, fileName_C, fileName_T, fileExt):  
@@ -52,3 +53,15 @@ def Set_WD():
               'Linux'   : linset,
               'Flux'    : fluxset}
     setdir[platform.system()]()
+
+def timerStart():
+    timer = time.clock()
+    return timer
+def timerStop(timer, sig):
+    timer = time.clock()-timer
+    timer = round(timer, sig)
+    return timer
+def printMessage(message):
+    tm = time.localtime()
+    timeStr = '%i:%i:%i'%(tm.tm_hour, tm.tm_min, tm.tm_sec)
+    print ('%s %s' %(timeStr, message))
