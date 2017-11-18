@@ -1,7 +1,7 @@
 install.packages("simstudy")
 install.packages("ggplot2")
 library("simstudy")
-library('ggplot2')
+library("ggplot2")
 
 
 #https://cran.r-project.org/web/packages/simstudy/vignettes/simstudy.html
