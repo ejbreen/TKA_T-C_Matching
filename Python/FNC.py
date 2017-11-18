@@ -10,7 +10,6 @@ import scipy.spatial
 import xlsxwriter
 from gurobipy import *
 import os
-import sys
 import platform
 import time
 
@@ -73,16 +72,25 @@ def printMessage(message):
     tm = time.localtime()
     timeStr = '%i:%i:%i'%(tm.tm_hour, tm.tm_min, tm.tm_sec)
     print ('%s %s' %(timeStr, message))
+    
+#export the timing data to an excel file
+def write_out(TimingData, dataSet):
+    filePath = "Data/"
+    fileName_out = "/timing_data_out_TD"
+    writer  = pd.ExcelWriter("%s%s%s"%(filePath, fileName_out, '.xlsx'),
+                             engine = 'xlsxwriter')
+    TimingData.to_excel(writer, "Data Set %i Timings"%(dataSet))
 
 
-def Build_PD_Model(C_pop_full, T_pop_full, T_n, matches):
+def Build_PD_Model(C_pop_full, T_pop_full, T_n, matches, weights):
     
     C_pop, T_pop = Shrink_pop(C_pop_full, T_pop_full, T_n)
     #start the setup timer
     setup_time = timerStart()
     
     #set weights for covariates to their min
-    weights, mean_T_pop,  dist = Pop_Calcuations(C_pop, T_pop) 
+    weight_base, mean_T_pop,  dist = Pop_Calcuations(C_pop, T_pop) 
+    weights = weights*weight_base
     
     #start creating model elements
     Ctrl  = list(range(len(C_pop)))
@@ -97,7 +105,6 @@ def Build_PD_Model(C_pop_full, T_pop_full, T_n, matches):
     Covar = list(T_pop)
     
     weights = pd.Series(weights, index = Covar)
-    
     
     #define the model
     m = Model('match')
@@ -146,7 +153,41 @@ def Build_PD_Model(C_pop_full, T_pop_full, T_n, matches):
     
     setup_time = timerStop(setup_time, 3)
     
-    return m
+    Timings = [setup_time, c1_t, c2_t, c3_t, c4_t]
+    Timings = pd.Series(Timings, index = ["Setup Time", "C1", "C2", "C3", "C4"])
+    
+    return m, Timings
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

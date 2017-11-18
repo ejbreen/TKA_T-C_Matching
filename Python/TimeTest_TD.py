@@ -78,7 +78,7 @@ for dataSet in D_sets:
             
             #define the model
             m = Model('match')
-            m.Params.OutputFlag = 0
+#            m.Params.OutputFlag = 0
             
             #create variables
             tm = time.localtime()
