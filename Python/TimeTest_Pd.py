@@ -20,19 +20,18 @@ Matches = pd.Series([   5,     5], index = T_n_sets)
 Timing_Cols = ['T_n', 'matches', 'Setup Time',
                'c1_t','c2_t','c3_t','c4_t', 'reps', 'Solve Time']
 
-filePath = "T:\Programing\IOE_413\TKA"
 fileName_C = "\C_pop "
 fileName_T = "\T_pop "
 fileName_out = "\\timing_data_out_Pd"
 dataSet = D_sets[0]
 fileExt = " .csv"
-writer  = pd.ExcelWriter("%s%s%s"%(filePath, fileName_out, '.xlsx'),
+writer  = pd.ExcelWriter("%s%s"%(fileName_out, '.xlsx'),
                          engine = 'xlsxwriter')
 
 for dataSet in D_sets:
-    C_pop_full = pd.read_csv("%s%s%i%s"%(filePath, fileName_C, dataSet, fileExt), 
+    C_pop_full = pd.read_csv("%s%i%s"%(fileName_C, dataSet, fileExt), 
                              index_col = 0)
-    T_pop_full = pd.read_csv("%s%s%i%s"%(filePath, fileName_T, dataSet, fileExt), 
+    T_pop_full = pd.read_csv("%s%i%s"%(fileName_T, dataSet, fileExt), 
                              index_col = 0)
     
     td = 0 
