@@ -116,10 +116,8 @@ T_pop_def <- defData(T_pop_def, varname = 'BMI',
                      dist = 'normal', formula = 31.40, variance = 7.05*7.05)
 
 
-write.csv(C_pop_def, file = "T:/Programing/IOE_413/TKA/C_pop_def.csv")
-write.csv(C_pop_def, file = "T:/Umich Drive/IOE 413/Work for Richard/Simulated Data/C_pop_def.csv")
-write.csv(T_pop_def, file = "T:/Programing/IOE_413/TKA/T_pop_def.csv")
-write.csv(T_pop_def, file = "T:/Umich Drive/IOE 413/Work for Richard/Simulated Data/T_pop_def.csv")
+write.csv(C_pop_def, file = "Data/C_pop_def.csv")
+write.csv(T_pop_def, file = "Data/T_pop_def.csv")
 
 
 
