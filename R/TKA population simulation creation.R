@@ -1,6 +1,6 @@
 
 
-for (i in 1){
+for (i in 1:3){
   print(paste('Generating dataset', i))
   
   C_pop <- genData(60000, C_pop_def)
