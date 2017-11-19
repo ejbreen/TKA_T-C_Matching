@@ -26,7 +26,8 @@ Timing_Cols = ['T_n', 'matches', 'Setup Time',
 Timing_Data = pd.DataFrame(0, index = list(range(Matches.sum())),
                           columns = Timing_Cols, dtype = np.float)
 dataSet = D_sets[0]
-writer  = FNC.build_writer("timing_data_out_TD")
+writer  = FNC.build_writer("timings_TD_%i-%i_treatments"%
+                           (T_n_sets[0],T_n_sets[len(T_n_sets)-1]))
 
 for dataSet in D_sets:
     C_pop_full, T_pop_full = FNC.Import_DataSets(dataSet)
@@ -34,12 +35,13 @@ for dataSet in D_sets:
     td=0
     
     for T_n in T_n_sets:
+        C_pop, T_pop = FNC.Shrink_pop(C_pop_full, T_pop_full, T_n)
         for matches in list(range(1, Matches[T_n]+1)):
             Timing_Data.loc[td][0:2] = [T_n, matches]
 
             #set up the model and return the timings of the different element's
-            m, setup_Time = FNC.Build_TD_Model(C_pop_full, T_pop_full, T_n,
-                                               matches, weights)
+            m, assign, setup_Time = FNC.Build_TD_Model(C_pop, T_pop, 
+                                                       matches, weights)
             Timing_Data.loc[td][2:7] = setup_Time
             
             FNC.printMessage("Start Presolve")

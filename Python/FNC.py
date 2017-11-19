@@ -8,10 +8,14 @@ import pandas as pd
 import numpy as np
 import scipy.spatial
 import xlsxwriter
-from gurobipy import *
-import os
 import platform
 import time
+
+import sys
+import os
+sys.path.append(os.path.abspath("Python/"))
+import FNC_model_build_Pd
+import FNC_model_build_TD
 
 #sets the working directory for the os that we are in
 #this way once the directory is known for an os, we can
@@ -57,11 +61,11 @@ def Pop_Calcuations(C_pop, T_pop):
 
 #start time of some timer
 def timerStart():
-    timer = timerStart()
+    timer = time.clock()
     return timer
 #end time of some timer
 def timerStop(timer, sig):
-    timer = timerStart()-timer
+    timer = time.clock()-timer
     timer = round(timer, sig)
     return timer
 #prints a message with time header
@@ -84,166 +88,26 @@ def write_out(writer):
     print "data exported to excel"
 
 
-def Build_Pd_Model(C_pop_full, T_pop_full, T_n, matches, weights):
+# models are defined in their own files, this is just meant as a pass 
+# through to FNC so FNC can be a one stop shop
+def Build_Pd_Model(C_pop, T_pop, matches, weights):
     
-    C_pop, T_pop = Shrink_pop(C_pop_full, T_pop_full, T_n)
-    #start the setup timer
-    setup_time = timerStart()
-    
-    #set weights for covariates to their min
-    weight_base, mean_T_pop,  dist = Pop_Calcuations(C_pop, T_pop) 
-    weights = weights*weight_base
-    
-    #start creating model elements
-    Ctrl  = list(range(len(C_pop)))
-    C_pop.index = Ctrl
-    Treat = list(range(len(T_pop)))
-    T_pop.index = Treat
-    T_n = len(T_pop)
-    match = list(range(matches))
-    
-    dist = pd.DataFrame(dist, index = Treat, columns = Ctrl)
-    
-    Covar = list(T_pop)
-    
-    weights = pd.Series(weights, index = Covar)
-    
-    #define the model
-    m = Model('match')
-    m.Params.OutputFlag = 0
-    
-    #create variables
-    printMessage("Creating Gurobi Variables")
-    assign = [[m.addVar(vtype = GRB.BINARY, name = "%i, %i" % (t, c)) 
-                for c in Ctrl] for t in Treat]
-    assign = pd.DataFrame(assign, index = Treat, columns = Ctrl)
-    z      = m.addVars(Covar, vtype = GRB.CONTINUOUS, name = "z")
-    
-    m.update()
-    
-    #objective fuction
-    printMessage("Creating Gurobi Objective Function")
-    m.setObjective((dist*assign).sum().sum() +  
-            quicksum(weights[i]*z[i] for i in Covar), 
-            sense = GRB.MINIMIZE)
-    
-    #define the constraints
-    printMessage("Creating Gurobi Constraints")
-    c1_t = timerStart()
-    m.addConstrs(matches <= assign.T.sum()[t] for t in Treat)
-    printMessage("Constraint 1 done")
-    c1_t = timerStop(c1_t, 3)
-    
-    c2_t = timerStart()
-    m.addConstrs(1 >= assign.sum()[c] for c in Ctrl)
-    printMessage("Constraint 2 done")
-    c2_t = timerStop(c2_t, 3)
+    m, assign, Timings = FNC_model_build_Pd.Build(C_pop, T_pop,
+                                                  matches, weights)
+    return m, assign, Timings
 
-    c3_t = timerStart()
-    m.addConstrs(z[i] >= quicksum(((assign.T[t]*C_pop[i])/(matches*T_n)).sum()
-            for t in Treat) + mean_T_pop[i] for i in Covar)
-    printMessage("Constraint 3 done")
-    c3_t = timerStop(c3_t, 3)
+def Build_TD_Model(C_pop, T_pop, matches, weights):
+    
+    m, assign, Timings = FNC_model_build_TD.Build(C_pop, T_pop, 
+                                                  matches, weights)
+    return m, assign, Timings
 
-    c4_t = timerStart()
-    m.addConstrs(z[i] >= -quicksum(((assign.T[t]*C_pop[i])/(matches*T_n)).sum()
-            for t in Treat) - mean_T_pop[i] for i in Covar)    
-    printMessage("Constraint 4 done")
-    c4_t = timerStop(c4_t, 3)
-    
-    m.update()
-    
-    setup_time = timerStop(setup_time, 3)
-    
-    Timings = [setup_time, c1_t, c2_t, c3_t, c4_t]
-    Timings = pd.Series(Timings, index = ["Setup Time", "C1", "C2", "C3", "C4"])
-    
-    return m, Timings
-
-
-def Build_TD_Model(C_pop_full, T_pop_full, T_n, matches, weights):
-    
-    C_pop, T_pop = Shrink_pop(C_pop_full, T_pop_full, T_n)
-    #start the setup timer
-    setup_time = timerStart()
-    
-    #set weights for covariates to their min
-    weight_base, mean_T_pop,  dist = Pop_Calcuations(C_pop, T_pop) 
-    weights = weights*weight_base
-    
-    setup_time = timerStart()
-    #start creating model elements
-    Ctrl  = list(range(len(C_pop)))
-    C_pop.index = Ctrl
-    Treat = list(range(len(T_pop)))
-    T_pop.index = Treat
-    T_n = len(T_pop)
-    
-    Covar = list(T_pop)
-    
-    distance = { (t,c) : dist[m][n] for n,c in enumerate(Ctrl)
-                                    for m,t in enumerate(Treat)}
-    
-    Ctrl_pop = { (c,i) : C_pop.loc[m].values[n] for n,i in enumerate(Covar)
-                                                for m,c in enumerate(Ctrl)}
-    
-    T_avg = { i : mean_T_pop[n] for n,i in enumerate (Covar)}
-    weight= { i : weights[n] for n,i in enumerate (Covar)}
-    
-    
-    #define the model
-    m = Model('match')
-#            m.Params.OutputFlag = 0
-    
-    #create variables
-    printMessage("Creating Gurobi Variables")
-    assign = m.addVars(distance.keys(), vtype = GRB.BINARY, name = "assign")
-    z      = m.addVars(T_avg.keys(), vtype = GRB.CONTINUOUS, name = "z")
-    
-    
-    m.update()
-    
-    #objective fuction
-    printMessage("Creating Gurobi Objective Function")
-    m.setObjective(quicksum(dist[t,c]*assign[t,c] for [t,c] in distance) + 
-                   quicksum(weight[i]*z[i] for i in Covar),
-                   sense = GRB.MINIMIZE)
-    
-    #define the constraints
-    printMessage("Creating Gurobi Constraints")
-    c1_t = timerStart()
-    m.addConstrs(matches <= quicksum(assign[t,c] for c in Ctrl) for t in Treat)
-    printMessage("Constraint 1 done")
-    c1_t = timerStop(c1_t, 3)
-    
-    c2_t = timerStart()
-    m.addConstrs(1 >= quicksum(assign[t,c] for t in Treat) for c in Ctrl)
-    printMessage("Constraint 2 done")
-    c2_t = timerStop(C2_t, 3)
-
-    c3_t = timerStart()
-    m.addConstrs(z[i] >= quicksum((Ctrl_pop[c,i]*assign[t,c])/(matches*T_n) 
-                for t,c in distance) + T_avg[i] for i in Covar)    
-    printMessage("Constraint 3 done")
-    c3_t = timerStop(c3_t, 3)
-
-    c4_t = timerStart()
-    m.addConstrs(z[i] >= -quicksum((Ctrl_pop[c,i]*assign[t,c])/(matches*T_n) 
-                for t,c in distance) - T_avg[i] for i in Covar)    
-    printMessage("Constraint 4 done")
-    c4_t = timerStop(c4_t, 3)
-    
-    m.update()
-    
-    setup_time = timerStop(setup_time, 3)
-    
-    Timings = [setup_time, c1_t, c2_t, c3_t, c4_t]
-    Timings = pd.Series(Timings, index = ["Setup Time", "C1", "C2", "C3", "C4"])
-    
-    return m, Timings
-
-
-
+#allows you to select the which model you want to create 
+def Build_Model(model_base, C_pop, T_pop, matches, weights):
+    selectM = {'Pd': Build_Pd_Model,
+               'TD': Build_TD_Model}
+    m, assign, Timings = selectM[model_base](C_pop, T_pop, matches, weights)
+    return m, assign, Timings
 
 
 

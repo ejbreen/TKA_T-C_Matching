@@ -15,10 +15,8 @@ import os
 sys.path.append(os.path.abspath("Python/"))
 import FNC
 
-
-def Build_TD_Model(C_pop_full, T_pop_full, T_n, matches, weights):
+def Build(C_pop, T_pop, matches, weights):
     
-    C_pop, T_pop = FNC.Shrink_pop(C_pop_full, T_pop_full, T_n)
     #start the setup timer
     setup_time = FNC.timerStart()
     
@@ -26,7 +24,6 @@ def Build_TD_Model(C_pop_full, T_pop_full, T_n, matches, weights):
     weight_base, mean_T_pop,  dist = FNC.Pop_Calcuations(C_pop, T_pop) 
     weights = weights*weight_base
     
-    setup_time = FNC.timerStart()
     #start creating model elements
     Ctrl  = list(range(len(C_pop)))
     C_pop.index = Ctrl
@@ -36,6 +33,7 @@ def Build_TD_Model(C_pop_full, T_pop_full, T_n, matches, weights):
     
     Covar = list(T_pop)
     
+    #build touple dict structures
     distance = { (t,c) : dist[m][n] for n,c in enumerate(Ctrl)
                                     for m,t in enumerate(Treat)}
     
@@ -48,7 +46,7 @@ def Build_TD_Model(C_pop_full, T_pop_full, T_n, matches, weights):
     
     #define the model
     m = Model('match')
-#            m.Params.OutputFlag = 0
+    m.Params.OutputFlag = 0
     
     #create variables
     FNC.printMessage("Creating Gurobi Variables")
@@ -93,9 +91,9 @@ def Build_TD_Model(C_pop_full, T_pop_full, T_n, matches, weights):
     setup_time = FNC.timerStop(setup_time, 3)
     
     Timings = [setup_time, c1_t, c2_t, c3_t, c4_t]
-    Timings = pd.Series(Timings, index = ["Setup Time", "C1", "C2", "C3", "C4"])
+    Timings = pd.Series(Timings, index = ["Setup Time","C1","C2","C3","C4"])
     
-    return m, Timings
+    return m, assign, Timings
 
 
 

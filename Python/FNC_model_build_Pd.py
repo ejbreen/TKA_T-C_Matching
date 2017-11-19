@@ -15,9 +15,8 @@ import os
 sys.path.append(os.path.abspath("Python/"))
 import FNC
 
-def Build_Pd_Model(C_pop_full, T_pop_full, T_n, matches, weights):
+def Build(C_pop, T_pop, matches, weights):
     
-    C_pop, T_pop = FNC.Shrink_pop(C_pop_full, T_pop_full, T_n)
     #start the setup timer
     setup_time = FNC.timerStart()
     
@@ -86,9 +85,9 @@ def Build_Pd_Model(C_pop_full, T_pop_full, T_n, matches, weights):
     setup_time = FNC.timerStop(setup_time, 3)
     
     Timings = [setup_time, c1_t, c2_t, c3_t, c4_t]
-    Timings = pd.Series(Timings, index = ["Setup Time", "C1", "C2", "C3", "C4"])
+    Timings = pd.Series(Timings, index = ["Setup Time","C1","C2","C3","C4"])
     
-    return m, Timings
+    return m, assign, Timings
 
 
 
