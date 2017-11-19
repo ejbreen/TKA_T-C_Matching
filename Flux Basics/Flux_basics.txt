@@ -9,8 +9,8 @@ modules
 		module list
 	load modules
 		module load (modulename)
-			module load R
-			module load python-anaconda2
+			module load R/3.4.1
+			module load python-anaconda2/latest
 	unload modules
 		module unload (modulename)
 			module unload R

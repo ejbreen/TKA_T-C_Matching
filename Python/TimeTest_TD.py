@@ -13,9 +13,9 @@ from gurobipy import *
 import time
 
 D_sets   = [1, 2, 3]
-T_n_sets =          [   2,     4,    8,  16]
-rounds  = pd.Series([1000,  1000, 1000, 500], index = T_n_sets)
-Matches = pd.Series([   5,     5,    5,   5], index = T_n_sets)
+T_n_sets =          [   2,     4]
+rounds  = pd.Series([1000,  1000], index = T_n_sets)
+Matches = pd.Series([   5,     5], index = T_n_sets)
 
 Timing_Cols = ['T_n', 'matches', 'Setup Time',
                'c1_t','c2_t','c3_t','c4_t', 'reps', 'Solve Time']
@@ -78,7 +78,7 @@ for dataSet in D_sets:
             
             #define the model
             m = Model('match')
-#            m.Params.OutputFlag = 0
+            m.Params.OutputFlag = 0
             
             #create variables
             tm = time.localtime()
