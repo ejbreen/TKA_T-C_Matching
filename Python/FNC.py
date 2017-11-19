@@ -38,10 +38,10 @@ def Import_DataSets(dataSet):
     fileName_C = "C_pop "
     fileName_T = "T_pop "
     fileExt = " .csv"
-    C_pop_full = pd.read_csv("%s%s%i%s"%(filePath, fileName_C, dataSet, fileExt), 
-                             index_col = 0)
-    T_pop_full = pd.read_csv("%s%s%i%s"%(filePath, fileName_T, dataSet, fileExt), 
-                             index_col = 0)
+    C_pop_full = pd.read_csv("%s%s%i%s"%(filePath, fileName_C, 
+                                         dataSet, fileExt), index_col = 0)
+    T_pop_full = pd.read_csv("%s%s%i%s"%(filePath, fileName_T, 
+                                         dataSet, fileExt), index_col = 0)
     return C_pop_full, T_pop_full
 
 #shrink the full datasets to down to T_n for T_pop and T_n*30 for C_pop
