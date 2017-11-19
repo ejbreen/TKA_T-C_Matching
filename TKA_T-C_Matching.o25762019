@@ -1,0 +1,17 @@
+Running on
+      1 nyx6196
+Running from /home/ejbreen/TKA_T-C_Matching
+
+The Gurobi software has a limited number of licenses.  To request a license or
+licenses, add this line
+
+#PBS -l gres=gurobi:N
+
+to your PBS script, replacing N with the number of licenses you need.  Gurobi
+will need one license per process.
+
+
+Traceback (most recent call last):
+  File "Python/TimeTest_Pd_FNC.py", line 12, in <module>
+    from gurobipy import *
+ImportError: No module named gurobipy

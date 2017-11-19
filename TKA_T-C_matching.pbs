@@ -31,9 +31,9 @@
 ## account memory alocation is processor allocation * 4
 
 ## but your program may run on less resources if it can
-#PBS -l nodes=1:ppn=6,pmem=24gb
+#PBS -l nodes=1:ppn=1,pmem=4gb
 ## max runtime (dd:hh:mm:ss)
-#PBS -l walltime=1:00:00
+#PBS -l walltime=30:00
 ## joins the error stream to the output stream
 #PBS -j oe
 ## sets the environment of all nodes to assigned to the job
@@ -68,4 +68,4 @@ module load python-anaconda2/latest
 ## load the gurobi optimizer
 module load gurobi
 ## run the python file, replace filename
-python filename.py
+python Python/TimeTest_Pd_FNC.py
