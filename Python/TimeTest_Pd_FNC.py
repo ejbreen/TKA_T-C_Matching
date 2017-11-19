@@ -30,12 +30,12 @@ Timing_Cols = ['T_n', 'matches', 'Setup Time',
 Timing_Data = pd.DataFrame(0, index = list(range(Matches.sum())),
                           columns = Timing_Cols, dtype = np.float)
 dataSet = D_sets[0]
+writer = FNC.build_writer("timing_data_out_TD")
 
 for dataSet in D_sets:
     C_pop_full, T_pop_full = FNC.Import_DataSets(dataSet)
     
     td = 0 
-    
      
     for T_n in T_n_sets:
         for matches in list(range(1, Matches[T_n]+1)):
@@ -49,11 +49,15 @@ for dataSet in D_sets:
             FNC.printMessage("Start Presolve")
             m.presolve()
             
-            m.optimize()
+            runTimes = pd.Series(range(rounds[T_n]), dtype = np.float)
+            for rnd in list(range(rounds[T_n])):
+                m.optimize()
+                runTimes[rnd] = m.runtime
+            Timing_Data.loc[td][7:9] = [rounds[T_n], round(runTimes.mean(),5)]
             
             td = td + 1
-        
-    
+    FNC.write_set(Timing_Data, dataSet, writer)
+FNC.write_out(writer)
             
            
     

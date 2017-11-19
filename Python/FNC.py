@@ -74,12 +74,17 @@ def printMessage(message):
     print ('%s %s' %(timeStr, message))
     
 #export the timing data to an excel file
-def write_out(TimingData, dataSet):
+def build_writer(fileName):
     filePath = "Data/"
-    fileName_out = "/timing_data_out_TD"
+    fileName_out = "/%s"%(fileName)
     writer  = pd.ExcelWriter("%s%s%s"%(filePath, fileName_out, '.xlsx'),
                              engine = 'xlsxwriter')
+    return writer
+def write_set(TimingData, dataSet, writer):
     TimingData.to_excel(writer, "Data Set %i Timings"%(dataSet))
+def write_out(writer):
+    writer.save()
+    print "data exported to excel"
 
 
 def Build_PD_Model(C_pop_full, T_pop_full, T_n, matches, weights):
