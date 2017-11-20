@@ -110,7 +110,27 @@ def Build_Model(model_base, C_pop, T_pop, matches, weights):
     return m, assign, Timings
 
 
-
+# outputs the average value of C_pop, T_pop, and the elements of C_pop 
+# selected in by the optimization
+def compare_PD_output(C_pop, T_pop, assign, matches):
+    Assignment = pd.DataFrame(0, index = C_pop.index, columns = T_pop.index)
+    for i in T_pop.index:
+        for j in C_pop.index:
+            Assignment[i][j] = assign[j][i].X
+    
+    C_pop_matched = pd.DataFrame(0, index = range(matches*len(T_pop)), 
+                                 columns = C_pop.columns)
+    j=0
+    for i in C_pop.index:
+        if Assignment.loc[i].sum() >=1:
+            C_pop_matched.loc[j] = C_pop.loc[i]
+            j = j+1
+            
+    mean_C_matched = C_pop_matched.mean()
+    mean_C_pop = C_pop.mean()
+    mean_T_pop = T_pop.mean()
+    
+    return mean_T_pop, mean_C_matched, mean_C_pop
 
 
 
