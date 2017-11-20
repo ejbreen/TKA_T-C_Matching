@@ -7,9 +7,7 @@ Created on Sun Nov 19 17:08:39 2017
 import pandas as pd
 import numpy as np
 from gurobipy import *
-from gurobipy import Model
-from gurobipy import GRB
-from gurobipy import quicksum
+from gurobipy import Model, GRB, quicksum
 
 import sys
 import os
@@ -33,8 +31,10 @@ def constr_4(m, assign, z, C_pop, matches, T_n, mean_T_pop, Treat, Covar):
 def threaded_constr_2(m, assign, Ctrl, threads):
     
     def f(sublist):
-        #FNC.printMessage("a thread has started")
+        FNC.printMessage("a thread has started at C_pop index %i  ||"%(sublist[0]))
         constr_2(m, assign, sublist)
+        FNC.printMessage("the thread started at C_pop index %i has finished ||"%(sublist[0]))
+    
     length = len(Ctrl)
     seg = int(round(length/threads, 0))
     sublists = []
@@ -44,10 +44,11 @@ def threaded_constr_2(m, assign, Ctrl, threads):
         sublists.append(temp)
     
     
-    pool = ThreadPool(threads)
+    pool = ThreadPool(8)
     pool.map(f, sublists)
     pool.close()
     pool.join()
+    pool.terminate()
     
 
 
@@ -85,7 +86,7 @@ def Build(C_pop, T_pop, matches, weights):
     #define the model
     m = Model('match')
     m.Params.LogFile = ""
-    m.Params.LogToConsol = 1
+    m.Params.LogToConsole = 0
     
     #create variables
     FNC.printMessage("Creating Gurobi Variables")
@@ -112,7 +113,7 @@ def Build(C_pop, T_pop, matches, weights):
     c2_t = FNC.timerStart()
     #####################################################
     
-    threaded_constr_2(m, assign, Ctrl, 4)
+    threaded_constr_2(m, assign, Ctrl, 30)
     
     #####################################################
     FNC.printMessage("Constraint 2 done")
