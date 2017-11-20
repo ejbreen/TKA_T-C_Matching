@@ -29,10 +29,32 @@ def constr_3(m, assign, z, C_pop, matches, T_n, mean_T_pop, Treat, Covar):
 def constr_4(m, assign, z, C_pop, matches, T_n, mean_T_pop, Treat, Covar):
     m.addConstrs(z[i] >= -quicksum(((assign.T[t]*C_pop[i])/(matches*T_n)).sum()
             for t in Treat) - mean_T_pop[i] for i in Covar) 
+    
+def threaded_constr_2(m, assign, Ctrl, threads):
+    
+    def f(sublist):
+        #FNC.printMessage("a thread has started")
+        constr_2(m, assign, sublist)
+    length = len(Ctrl)
+    seg = int(round(length/threads, 0))
+    sublists = []
+    for i in reversed(list(range(threads))):
+        temp = list(range(int(round(length-((i+1)*seg),0)),
+                          int(round(length-(i*seg),0))))
+        sublists.append(temp)
+    
+    
+    pool = ThreadPool(threads)
+    pool.map(f, sublists)
+    pool.close()
+    pool.join()
+    
 
 
 C_pop_full, T_pop_full = FNC.Import_DataSets(1)
+#########################################################
 C_pop, T_pop = FNC.Shrink_pop(C_pop_full, T_pop_full, 50)
+#########################################################
 weights = np.ones(len(T_pop_full.columns))
 
 
@@ -83,24 +105,26 @@ def Build(C_pop, T_pop, matches, weights):
     #define the constraints
     FNC.printMessage("Creating Gurobi Constraints")
     c1_t = FNC.timerStart()
-    m.addConstrs(matches <= assign.T.sum()[t] for t in Treat)
+    constr_1(m, assign, matches, Treat)
     FNC.printMessage("Constraint 1 done")
     c1_t = FNC.timerStop(c1_t, 3)
     
     c2_t = FNC.timerStart()
-    m.addConstrs(1 >= assign.sum()[c] for c in Ctrl)
+    #####################################################
+    
+    threaded_constr_2(m, assign, Ctrl, 4)
+    
+    #####################################################
     FNC.printMessage("Constraint 2 done")
     c2_t = FNC.timerStop(c2_t, 3)
 
     c3_t = FNC.timerStart()
-    m.addConstrs(z[i] >= quicksum(((assign.T[t]*C_pop[i])/(matches*T_n)).sum()
-            for t in Treat) + mean_T_pop[i] for i in Covar)
+    constr_3(m, assign, z, C_pop, matches, T_n, mean_T_pop, Treat, Covar)
     FNC.printMessage("Constraint 3 done")
     c3_t = FNC.timerStop(c3_t, 3)
 
     c4_t = FNC.timerStart()
-    m.addConstrs(z[i] >= -quicksum(((assign.T[t]*C_pop[i])/(matches*T_n)).sum()
-            for t in Treat) - mean_T_pop[i] for i in Covar)    
+    constr_4(m, assign, z, C_pop, matches, T_n, mean_T_pop, Treat, Covar)   
     FNC.printMessage("Constraint 4 done")
     c4_t = FNC.timerStop(c4_t, 3)
     
@@ -118,8 +142,9 @@ def Build(C_pop, T_pop, matches, weights):
 m, assign, Timings = Build(C_pop, T_pop, 5, weights)
 m.optimize()
 
-mean_T_pop, mean_C_matched, mean_C_pop = FNC.compare_PD_output(C_pop, T_pop,
-                                                               assign, 5)
+Means, Assignment, C_matched = FNC.compare_PD_output(C_pop, T_pop, assign, 5)
+
+print 'the time it took to create C_2 was %f'%(Timings[2])
 
 
 

@@ -118,19 +118,21 @@ def compare_PD_output(C_pop, T_pop, assign, matches):
         for j in C_pop.index:
             Assignment[i][j] = assign[j][i].X
     
-    C_pop_matched = pd.DataFrame(0, index = range(matches*len(T_pop)), 
+    C_matched = pd.DataFrame(0, index = range(matches*len(T_pop)), 
                                  columns = C_pop.columns)
     j=0
     for i in C_pop.index:
         if Assignment.loc[i].sum() >=1:
-            C_pop_matched.loc[j] = C_pop.loc[i]
+            C_matched.loc[j] = C_pop.loc[i]
             j = j+1
             
-    mean_C_matched = C_pop_matched.mean()
+    mean_C_matched = C_matched.mean()
     mean_C_pop = C_pop.mean()
     mean_T_pop = T_pop.mean()
+    means = pd.concat([mean_T_pop, mean_C_matched, mean_C_pop], axis=1)
+    means.columns = ['Treatment', 'Matched Ctrl', 'Control']
     
-    return mean_T_pop, mean_C_matched, mean_C_pop
+    return means, Assignment, C_matched
 
 
 
