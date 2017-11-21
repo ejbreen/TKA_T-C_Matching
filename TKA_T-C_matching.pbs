@@ -33,7 +33,7 @@
 ## but your program may run on less resources if it can
 #PBS -l nodes=1:ppn=4,pmem=8gb
 ## max runtime (dd:hh:mm:ss)
-#PBS -l walltime=30:00
+#PBS -l walltime=10:00
 ## joins the error stream to the output stream
 #PBS -j oe
 ## sets the environment of all nodes to assigned to the job
@@ -64,7 +64,7 @@ fi
 ##		first to generate the datasets for the python stuff
 
 ## run the python file, replace filename
-python Python/TimeTest_Pd_FNC.py
+python Python/TimeTest.py
 
 
 

@@ -11,6 +11,7 @@ modules
 		module load (modulename)
 			module load R/3.4.1
 			module load python-anaconda2/latest
+			moduel load gurobi/7.5.1
 	unload modules
 		module unload (modulename)
 			module unload R
