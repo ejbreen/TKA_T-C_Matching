@@ -87,11 +87,12 @@ def Build(C_pop, T_pop, matches, weights):
     #define the constraints
     m.addConstrs(matches <= quicksum(assign[t,c] for c in Ctrl) for t in Treat)
     
+    #this is just miles and miles faster
     m.addConstrs(1 >= quicksum(assign[t,c] for t in Treat) for c in Ctrl)
 
+    # these preform worse than their pandas counterpart
     m.addConstrs(z[i] >= quicksum((Ctrl_pop[c,i]*assign[t,c])/(matches*T_n) 
                 for t,c in distance) + T_avg[i] for i in Covar)    
-
     m.addConstrs(z[i] >= -quicksum((Ctrl_pop[c,i]*assign[t,c])/(matches*T_n) 
                 for t,c in distance) - T_avg[i] for i in Covar)    
                 
