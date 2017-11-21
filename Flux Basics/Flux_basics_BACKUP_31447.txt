@@ -11,7 +11,11 @@ modules
 		module load (modulename)
 			module load R/3.4.1
 			module load python-anaconda2/latest
+<<<<<<< HEAD
+			module load gurobi/7.5.1
+=======
 			moduel load gurobi/7.5.1
+>>>>>>> a032075a675e62c25ce66ccb4240e1b64546b197
 	unload modules
 		module unload (modulename)
 			module unload R
