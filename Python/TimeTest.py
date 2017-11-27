@@ -5,8 +5,8 @@ Created on Sun Nov 19 18:08:20 2017
 @author: Evan
 """
 
-import pandas as pd
 import numpy as np
+import pandas as pd
 
 import sys
 import os
