@@ -41,7 +41,7 @@
 #PBS -V
 
 ## to get gurobi installed add
-#PBS -l gres=guroi:4
+#PBS -l gres=gurobi:1
 
 ## End PBS preamble
 
@@ -56,6 +56,9 @@ if [ -d "$PBS_O_WORKDIR" ] ; then
 fi
 
 ##  Put your job commands after this line
+
+module load python_anaconda2/latest
+module load gurobi/7.5.1
 
 ## run the R file, repalce filename, console output goes to R_out
 ## module load R/3.4.1
