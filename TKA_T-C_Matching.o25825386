@@ -1,0 +1,27 @@
+Running on
+      1 nyx6199
+Running from /home/ejbreen/TKA_T-C_Matching
+
+The Gurobi software has a limited number of licenses.  To request a license or
+licenses, add this line
+
+#PBS -l gres=gurobi:N
+
+to your PBS script, replacing N with the number of licenses you need.  Gurobi
+will need one license per process.
+
+
+Traceback (most recent call last):
+  File "Python/TimeTest.py", line 8, in <module>
+    import numpy as np
+  File "/sw/lsa/centos7/python-anaconda2/created-20170421b/lib/python2.7/site-packages/numpy/__init__.py", line 142, in <module>
+    from . import add_newdocs
+  File "/sw/lsa/centos7/python-anaconda2/created-20170421b/lib/python2.7/site-packages/numpy/add_newdocs.py", line 13, in <module>
+    from numpy.lib import add_newdoc
+  File "/sw/lsa/centos7/python-anaconda2/created-20170421b/lib/python2.7/site-packages/numpy/lib/__init__.py", line 8, in <module>
+    from .type_check import *
+  File "/sw/lsa/centos7/python-anaconda2/created-20170421b/lib/python2.7/site-packages/numpy/lib/type_check.py", line 11, in <module>
+    import numpy.core.numeric as _nx
+  File "/sw/lsa/centos7/python-anaconda2/created-20170421b/lib/python2.7/site-packages/numpy/core/__init__.py", line 14, in <module>
+    from . import multiarray
+ImportError: libopenblas.so.0: cannot open shared object file: No such file or directory
