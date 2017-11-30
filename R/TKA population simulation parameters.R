@@ -65,7 +65,7 @@ C_pop_def <- defData(C_pop_def, varname = 'BMI',
 T_pop_def <- defData(varname = 'IMPLANT',
                      dist = 'nonrandom', formula = 1)
 T_pop_def <- defData(T_pop_def, varname = 'B',
-                     dist = 'categorical', formula = '.264;.736;.000;.000') 
+                     dist = 'categorical', formula = '.264;.736;.000;.000')
 T_pop_def <- defData(T_pop_def, varname = 'B_MOP', 
                      dist = 'nonrandom', formula = 'B==1')
 T_pop_def <- defData(T_pop_def, varname = 'B_COP', 
