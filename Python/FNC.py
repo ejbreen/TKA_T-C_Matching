@@ -25,7 +25,7 @@ def Set_WD():
     def winset():
         os.chdir(r'D:/Programing/TKA_T-C_Matching')
     def linset():
-        os.chdir(r'/home/evan/TKA_T-C_Matching')
+        os.chdir(r'~/TKA_T-C_Matching')
     setdir = {'Windows' : winset,
               'Linux'   : linset}
     setdir[platform.system()]()
