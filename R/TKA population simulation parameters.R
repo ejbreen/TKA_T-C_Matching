@@ -11,7 +11,7 @@ Approach_levels <- c('anterior','anterolateral','posterior','transtrochanteric')
 C_pop_def <- defData(varname = 'IMPLANT', 
                      dist = 'nonrandom', formula = 0)
 C_pop_def <- defData(C_pop_def, varname = 'B', 
-                     dist = 'categorical', formula = '.449;.498;.007;.046') 
+                     dist = 'categorical', formula = '.449;.498;.007;.046')
 C_pop_def <- defData(C_pop_def, varname = 'B_MOP', 
                      dist = 'nonrandom', formula = 'B==1')
 C_pop_def <- defData(C_pop_def, varname = 'B_COP', 
