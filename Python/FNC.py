@@ -28,7 +28,7 @@ def Set_WD():
         os.chdir(r'/home/%s/TKA_T-C_Matching'%(user))
     setdir = {'Windows' : winset,
               'Linux'   : linset}
-    setdir[platform.system()](ejbreen)
+    setdir[platform.system()]('ejbreen')
 
 #Import the specified dataset (1, 2, or 3) from the data folder into 
 #C_pop_full and T_pop_full
