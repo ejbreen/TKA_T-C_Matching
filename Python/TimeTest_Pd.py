@@ -16,9 +16,11 @@ import FNC
 C_pop_full, T_pop_full = FNC.Import_DataSets(1)
 
 D_sets   = [1, 2, 3]
-T_n_sets =          [   2,     4,   8,  16,  32, 64, 128, 256]
-rounds  = pd.Series([1000,  1000, 500, 500, 100, 50,  50,  25], index = T_n_sets)
-Matches = pd.Series([   5,     5,   5,   5,   5,  3,   2,   1], index = T_n_sets)
+T_n_sets =          [   2,     4,   8,  16,  32, 64, 128, 256, 512]
+rounds  = pd.Series([1000,  1000, 500, 500, 100, 50,  50,  25,  25], 
+                    index = T_n_sets)
+Matches = pd.Series([   5,     5,   5,   5,   5,  3,   2,   2,   2], 
+                    index = T_n_sets)
 weights = np.ones(len(T_pop_full.columns))
 
 Timing_Cols = ['T_n', 'matches', 'Setup Time',
