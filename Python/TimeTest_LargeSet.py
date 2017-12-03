@@ -19,9 +19,9 @@ C_pop_full, T_pop_full = FNC.Import_DataSets(1)
 model = "Pd"
 
 D_sets   = [1, 2, 3]
-T_n_sets =          []
-rounds  = pd.Series([], index = T_n_sets)
-Matches = pd.Series([], index = T_n_sets)
+T_n_sets =          [500, 1000, 1500]
+rounds  = pd.Series([ 25,   10,   10], index = T_n_sets)
+Matches = pd.Series([  5,    3,    5], index = T_n_sets)
 weights = pd.Series(1, index = T_pop_full.columns)
 
 Timing_Cols = ['T_n', 'matches', 'Setup Time',
@@ -39,7 +39,7 @@ for dataSet in D_sets:
      
     for T_n in T_n_sets:
         C_pop, T_pop = FNC.Shrink_pop(C_pop_full, T_pop_full, T_n)
-        for matches in list(range(1, Matches[T_n]+1)):
+        for matches in list(range(Matches[T_n], Matches[T_n]+1)):
             Timing_Data.loc[td][0:2] = [T_n, matches]
             
             #set up the model and return the timings of the different element's
