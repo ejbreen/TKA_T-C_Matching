@@ -71,8 +71,8 @@ def timerStop(timer, sig):
 #prints a message with time header
 def printMessage(message):
     tm = time.localtime()
-    timeStr = '%i:%i:%i'%(tm.tm_hour, tm.tm_min, tm.tm_sec)
-    print ('%s %s' %(timeStr, message))
+#    timeStr = '%i:%i:%i'%(tm.tm_hour, tm.tm_min, tm.tm_sec)
+#    print ('%s %s' %(timeStr, message))
     
 #export the timing data to an excel file
 def build_writer(fileName):

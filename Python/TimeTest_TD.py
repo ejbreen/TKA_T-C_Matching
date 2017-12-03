@@ -54,6 +54,7 @@ for dataSet in D_sets:
             Timing_Data.loc[td][7:9] = [rounds[T_n], round(runTimes.mean(),5)]
             
             td = td + 1
+        print "Data set %i, treatment set size %i complete"%(dataSet, T_n)
     FNC.write_set(Timing_Data, dataSet, writer)
 FNC.write_out(writer)
             
