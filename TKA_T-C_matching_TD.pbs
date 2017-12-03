@@ -3,7 +3,7 @@
 
 ## the first block covers interaction
 ## name of file
-#PBS -N TKA_T-C_Matching
+#PBS -N T-C_Matching_TD
 ## email address to send info to
 #PBS -M ejbreen@umich.edu
 ## what notifications to recieve: 'b' when program begins, 
@@ -68,7 +68,7 @@ fi
 
 ## run the python file, replace filename
 
-python Python/TimeTest.py
+python Python/TimeTest_TD.py
 
 
 
