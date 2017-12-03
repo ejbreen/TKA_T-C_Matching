@@ -28,7 +28,7 @@ Timing_Cols = ['T_n', 'matches', 'Setup Time',
 Timing_Data = pd.DataFrame(0, index = list(range(Matches.sum())),
                           columns = Timing_Cols, dtype = np.float)
 dataSet = D_sets[0]
-writer  = FNC.build_writer("timings_TD_%i-%i_treatments"%
+writer  = FNC.build_writer("timings_Pd_%i-%i_treatments"%
                            (T_n_sets[0],T_n_sets[len(T_n_sets)-1]))
 
 for dataSet in D_sets:
