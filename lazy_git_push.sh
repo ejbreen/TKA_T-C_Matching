@@ -7,7 +7,7 @@ echo adding all files to commit
 git add *
 
 echo commiting with generic message
-git commit -m "cleaning up"
+git commit -m "lazy commit"
 
 echo pushing commit to master
 git push
