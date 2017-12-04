@@ -22,13 +22,17 @@ import FNC_model_build_TD
 #let it set itself up automatically
 #----This probably needs to be updated for the pixelbook and Flux
 def Set_WD():
-    def winset(user):
+    def winset():
         os.chdir(r'D:/Programing/TKA_T-C_Matching')
-    def linset(user):
+    def linset():
+        try:
+            user = os.getlogin()
+        except:
+            user = "evan"
         os.chdir(r'/home/%s/TKA_T-C_Matching'%(user))
     setdir = {'Windows' : winset,
               'Linux'   : linset}
-    setdir[platform.system()]('evan')
+    setdir[platform.system()]()
 
 #Import the specified dataset (1, 2, or 3) from the data folder into 
 #C_pop_full and T_pop_full
