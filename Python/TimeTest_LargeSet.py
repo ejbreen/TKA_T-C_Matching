@@ -58,5 +58,5 @@ for dataSet in D_sets:
             
             td = td + 1
         print "Data set %i, treatment set size %i complete"%(dataSet, T_n)
-    FNC.write_set(Timing_Data, dataSet, writer)
+    FNC.write_set(Timing_Data, dataSet, writer, model)
 FNC.write_out(writer)

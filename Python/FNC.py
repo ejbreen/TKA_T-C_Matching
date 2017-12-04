@@ -28,7 +28,7 @@ def Set_WD():
         os.chdir(r'/home/%s/TKA_T-C_Matching'%(user))
     setdir = {'Windows' : winset,
               'Linux'   : linset}
-    setdir[platform.system()]('ejbreen')
+    setdir[platform.system()]('evan')
 
 #Import the specified dataset (1, 2, or 3) from the data folder into 
 #C_pop_full and T_pop_full
@@ -81,8 +81,9 @@ def build_writer(fileName):
     writer  = pd.ExcelWriter("%s%s%s"%(filePath, fileName_out, '.xlsx'),
                              engine = 'xlsxwriter')
     return writer
-def write_set(TimingData, dataSet, writer):
-    TimingData.to_excel(writer, "Data Set %i Timings"%(dataSet))
+def write_set(TimingData, dataSet, writer, modelType):
+    TimingData.to_excel(writer,
+                        "Data Set %i Timings (%s)"%(dataSet, modelType))
 def write_out(writer):
     writer.save()
     print "data exported to excel"
