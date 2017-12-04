@@ -1,46 +1,40 @@
 ## PBS preamble
-## submit using qsub TKA_T-C_Matching.pbs
 
-## the first block covers interaction
+# the first block covers interaction
 ## name of file
 #PBS -N T-C_Matching_Lg
 ## email address to send info to
 #PBS -M ejbreen@umich.edu
-## what notifications to recieve: 'b' when program begins, 
-## 'a' when program aborts, 'e' when program ends, 'n' never
+## send an email when the script begins to run, aborts, or ends
 #PBS -m bae	
 
-
-## the second block covers payment and routing
-
+# the second block covers payment and routing
 ## which flux accout to use
 #PBS -A engin_flux
+### for engin_flux the max proc per user is 20 with a
+### resulting max mem of 80
 ## this should always be -l qos=flux
 #PBS -l qos=flux
 ## defines which queue to use, will be the account suffix
 #PBS -q flux
 
-
-## the third block covers job characteristics
-
+# the third block covers job characteristics
 ## the machines (nodes), processors per maching(ppn), 
 ## and memory per processor(ppn) that your project will need
-
-## this should be treated as the potential "worst case" max use
-## interpreted as max 2 nodes with 2 per node but may be 1 node with 4 processers
-## account memory alocation is processor allocation * 4
-
-## but your program may run on less resources if it can
-#PBS -l nodes=1:ppn=1,pmem=64gb
+#PBS -l nodes=1:ppn=1,pmem=48gb
+### using 48 gb to complement the other 2 16 gb runs for 
+### the smaller Pd and TD models that can be running concurrently.
+### This brings the total used to 80 which is the max for engin_flux
 ## max runtime (dd:hh:mm:ss)
-#PBS -l walltime=72:00:00
+#PBS -l walltime=3:00:00:00
 ## joins the error stream to the output stream
 #PBS -j oe
-## sets the environment of all nodes to assigned to the job
-## to be the same environment as the one that the job was submitted from
+## sets the environment to the one the job was submitted from
 #PBS -V
 
-## to get gurobi installed add
+## needed to get a gurobi licence
+### the number should be the number of licences or processes
+### of gurobi that will be needed
 #PBS -l gres=gurobi:1
 
 ## End PBS preamble
@@ -57,17 +51,7 @@ fi
 
 ##  Put your job commands after this line
 
-## module load python-anaconda2/latest
-## module load gurobi/7.5.1
-
-## run the R file, repalce filename, console output goes to R_out
-## module load R/3.4.1
-## R CMD BATCH --no-restore --no-save filename.R Stream_out.out
-##		Run the R/main.R from the TKA_T-C_Matching home folder
-##		first to generate the datasets for the python stuff
-
-## run the python file, replace filename
-
+## run the python file
 python Python/TimeTest_LargeSet.py
 
 
