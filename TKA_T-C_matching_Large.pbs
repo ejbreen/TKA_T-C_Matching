@@ -31,7 +31,7 @@
 ## account memory alocation is processor allocation * 4
 
 ## but your program may run on less resources if it can
-#PBS -l nodes=1:ppn=1,pmem=30gb
+#PBS -l nodes=1:ppn=1,pmem=64gb
 ## max runtime (dd:hh:mm:ss)
 #PBS -l walltime=72:00:00
 ## joins the error stream to the output stream
