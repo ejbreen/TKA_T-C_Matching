@@ -21,7 +21,7 @@
 # the third block covers job characteristics
 ## the machines (nodes), processors per maching(ppn), 
 ## and memory per processor(ppn) that your project will need
-#PBS -l nodes=1:ppn=1,pmem=48gb
+#PBS -l nodes=1:ppn=1,pmem=46gb
 ### using 48 gb to complement the other 2 16 gb runs for 
 ### the smaller Pd and TD models that can be running concurrently.
 ### This brings the total used to 80 which is the max for engin_flux

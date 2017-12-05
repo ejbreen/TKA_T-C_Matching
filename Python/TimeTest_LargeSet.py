@@ -16,13 +16,13 @@ import FNC
 C_pop_full, T_pop_full = FNC.Import_DataSets(1)
 # model options are "Pd" - build using pandas dataframes
 #                   "TD" - build using gurobi touple dicts
-model    = "Pd"
-model_id = 0
+model    = "TD"
+model_id = 1
 
 D_sets   = [1, 2, 3]
-T_n_sets =          [500, 1000, 1500]
-rounds  = pd.Series([ 25,   10,   10], index = T_n_sets)
-Matches = pd.Series([  5,    3,    5], index = T_n_sets)
+T_n_sets =          [500, 1000]
+rounds  = pd.Series([ 25,   25], index = T_n_sets)
+Matches = pd.Series([  4,    5], index = T_n_sets)
 weights = pd.Series(1, index = T_pop_full.columns)
 
 Timing_Cols = ['model','data set', 'T_n', 'matches', 'Setup Time',
