@@ -16,6 +16,7 @@ import os
 sys.path.append(os.path.abspath("Python/"))
 import FNC_model_build_Pd
 import FNC_model_build_TD
+import FNC_regression
 
 #sets the working directory for the os that we are in
 #this way once the directory is known for an os, we can
@@ -95,17 +96,11 @@ def write_out(writer):
 
 # models are defined in their own files, this is just meant as a pass 
 # through to FNC so FNC can be a one stop shop
-def Build_Pd_Model(C_pop, T_pop, matches, weights):
-    
-    m, assign, Timings = FNC_model_build_Pd.Build(C_pop, T_pop,
-                                                  matches, weights)
-    return m, assign, Timings
+def Build_Pd_Model(C_pop, T_pop, matches, weights): 
+    return FNC_model_build_Pd.Build(C_pop, T_pop, matches, weights)
 
 def Build_TD_Model(C_pop, T_pop, matches, weights):
-    
-    m, assign, Timings = FNC_model_build_TD.Build(C_pop, T_pop, 
-                                                  matches, weights)
-    return m, assign, Timings
+    return FNC_model_build_TD.Build(C_pop, T_pop, matches, weights)
 
 #allows you to select the which model you want to create 
 def Build_Model(model_base, C_pop, T_pop, matches, weights):
@@ -161,7 +156,10 @@ def compare_TD_output(C_pop, T_pop, assign, matches):
     
     return means, Assignment, C_matched
 
-
+# compare the multiple linear regression models of the raw data 
+# and the selected subset
+def compare_MLR(C_pop, T_pop, C_matched):
+    return FNC_regression.compare_MLR(C_pop, T_pop, C_matched)
 
 
 

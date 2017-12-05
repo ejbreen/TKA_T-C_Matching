@@ -18,8 +18,8 @@ C_pop_full, T_pop_full = FNC.Import_DataSets(1)
 #                   "TD" - build using gurobi touple dicts
 model = "Pd"
 
-D_sets   = [1, 2, 3]
-T_n_sets =          [   4]
+D_sets   = [1]
+T_n_sets =          [   16]
 rounds  = pd.Series([1000], index = T_n_sets)
 Matches = pd.Series([   5], index = T_n_sets)
 weights = np.ones(len(T_pop_full.columns))
@@ -92,6 +92,10 @@ for dataSet in D_sets:
             td = td + 1
         print "Data set %i, treatment set size %i complete"%(dataSet, T_n)
 FNC.write_set(Timing_Data_TD, 0, writer, model)
+
+# gets a few stats to compare the results of the last model run
+Means, Assignment, C_matched = FNC.compare_TD_output(C_pop, T_pop, assign, matches)
+Models, MRL_raw, MLR_sub = FNC.compare_MLR(C_pop, T_pop, C_matched)
 
 Timing_Data = Timing_Data_Pd.append(Timing_Data_TD)
 FNC.write_set(Timing_Data, 0, writer, "combined")
