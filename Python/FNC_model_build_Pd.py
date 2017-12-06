@@ -15,6 +15,7 @@ import os
 sys.path.append(os.path.abspath("Python/"))
 import FNC
 
+#@profile
 def Build(C_pop, T_pop, matches, weights):
     
     #start the setup timer
