@@ -19,7 +19,7 @@ C_pop_full, T_pop_full = FNC.Import_DataSets(1)
 model    = "TD"
 model_id = 1
 
-D_sets   = [1, 2, 3]
+D_sets   = [1]
 T_n_sets =          [500, 1000]
 rounds  = pd.Series([ 25,   25], index = T_n_sets)
 Matches = pd.Series([  4,    5], index = T_n_sets)
