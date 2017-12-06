@@ -1,0 +1,13 @@
+Running on
+      1 nyx6158
+Running from /home/ejbreen/TKA_T-C_Matching
+Traceback (most recent call last):
+  File "Python/TimeTest_LargeSet.py", line 16, in <module>
+    C_pop_full, T_pop_full = FNC.Import_DataSets(1)
+  File "/home/ejbreen/TKA_T-C_Matching/Python/FNC.py", line 41, in Import_DataSets
+    Set_WD()
+  File "/home/ejbreen/TKA_T-C_Matching/Python/FNC.py", line 36, in Set_WD
+    setdir[platform.system()]()
+  File "/home/ejbreen/TKA_T-C_Matching/Python/FNC.py", line 33, in linset
+    os.chdir(r'/home/%s/TKA_T-C_Matching'%(user))
+OSError: [Errno 2] No such file or directory: '/home/evan/TKA_T-C_Matching'
