@@ -18,7 +18,7 @@ C_pop_full, T_pop_full = FNC.Import_DataSets(1)
 #                   "TD" - build using gurobi touple dicts
 model = "Pd"
 
-D_sets   = [1, 2, 3]
+D_sets   = [2, 3]
 T_n_sets =          [   4,   8,  16,  32, 64, 128, 256, 512]
 rounds  = pd.Series([1000, 500, 500, 100, 50,  50,  25,  25], index = T_n_sets)
 Matches = pd.Series([   5,   5,   5,   5,  3,   2,   2,   2], index = T_n_sets)

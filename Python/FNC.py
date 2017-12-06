@@ -26,11 +26,12 @@ def Set_WD():
     def winset():
         os.chdir(r'D:/Programing/TKA_T-C_Matching')
     def linset():
+        user = "ejbreen"
         try:
             user = os.getlogin()
         except:
             user = "evan"
-        os.chdir(r'/home/%s/TKA_T-C_Matching'%("ejbreen"))
+        os.chdir(r'/home/%s/TKA_T-C_Matching'%(user))
     setdir = {'Windows' : winset,
               'Linux'   : linset}
     setdir[platform.system()]()
@@ -89,6 +90,8 @@ def build_writer(fileName):
 def write_set(TimingData, dataSet, writer, modelType):
     TimingData.to_excel(writer,
                         "Data Set %i Timings (%s)"%(dataSet, modelType))
+def write_df(Data, message, writer, modelType):
+    Data.to_excel(writer, "%s (%s)"%(message, modelType))
 def write_out(writer):
     writer.save()
     print "data exported to excel"
