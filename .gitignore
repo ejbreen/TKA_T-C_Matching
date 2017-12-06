@@ -4,4 +4,4 @@
 .Ruserdata
 *.csv
 *.pyc
-
+gurobi.log
