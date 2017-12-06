@@ -2,6 +2,7 @@
 # The 
 T_rev_random_def = T_pop_def 
 T_rev_causal_def = T_pop_def
+factors = T_pop_def$varname
 
 Causal_formula = 'round(1/(1+exp(-(5.3*B_COP - 5.295))))'
 
