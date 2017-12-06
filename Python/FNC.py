@@ -30,7 +30,7 @@ def Set_WD():
             user = os.getlogin()
         except:
             user = "evan"
-        os.chdir(r'/home/%s/TKA_T-C_Matching'%(user))
+        os.chdir(r'/home/%s/TKA_T-C_Matching'%("ejbreen"))
     setdir = {'Windows' : winset,
               'Linux'   : linset}
     setdir[platform.system()]()
