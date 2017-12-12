@@ -16,10 +16,10 @@ import FNC
 C_pop_full, T_pop_full = FNC.Import_DataSets(1)
 # model options are "Pd" - build using pandas dataframes
 #                   "TD" - build using gurobi touple dicts
-model    = "TD"
-model_id = 1
+model    = "Pd"
+model_id = 0
 
-D_sets   = [1, 2, 3]
+D_sets   = [1]
 T_n_sets =          [500, 1000]
 rounds  = pd.Series([ 25,   25], index = T_n_sets)
 Matches = pd.Series([  4,    5], index = T_n_sets)
