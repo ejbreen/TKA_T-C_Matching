@@ -29,3 +29,7 @@ Params = Params.assign(sqrt_T_n = lambda x: x.T_n**.5)
 Params = Params.assign(T_n_sqrd = lambda x: x.T_n**2)
 
 m_setup.fit(Params, Timings['Setup Time'])
+m_c1.fit(Params, Timings['c1_t'])
+m_c2.fit(Params, Timings['c2_t'])
+m_c3.fit(Params, Timings['c3_t'])
+m_c4.fit(Params, Timings['c4_t'])
