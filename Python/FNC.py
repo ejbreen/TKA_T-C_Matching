@@ -161,6 +161,9 @@ def compare_TD_output(C_pop, T_pop, assign, matches):
 def compare_MLR(C_pop, T_pop, C_matched):
     return FNC_regression.compare_MLR(C_pop, T_pop, C_matched)
 
+def timing_data_regression(Timings):
+    return FNC_regression.timing_data_regression(Timings)
+
 
 
 
