@@ -56,12 +56,14 @@ def timing_data_regression(Timings):
     Timings = Timings.rename(index = str, columns = {'Setup Time':'setup_time'})
     Timings = Timings.rename(index = str, columns = {'Solve Time':'solve_time'})
     
-    m_setup=sm.OLS.from_formula('setup_time ~ C(model) + T_n + matches + sqrt_T_n + T_n_sqrd + T_n_cubd', Timings)
-    m_c1 = sm.OLS.from_formula('c1_t ~ C(model) + T_n + matches + sqrt_T_n + T_n_sqrd + T_n_cubd', Timings)
-    m_c2 = sm.OLS.from_formula('c2_t ~ C(model) + T_n + matches + sqrt_T_n + T_n_sqrd + T_n_cubd', Timings)
-    m_c3 = sm.OLS.from_formula('c3_t ~ C(model) + T_n + matches + sqrt_T_n + T_n_sqrd + T_n_cubd', Timings)
-    m_c4 = sm.OLS.from_formula('c4_t ~ C(model) + T_n + matches + sqrt_T_n + T_n_sqrd + T_n_cubd', Timings)
-    m_solve=sm.OLS.from_formula('solve_time ~ C(model) + T_n + matches + sqrt_T_n + T_n_sqrd + T_n_cubd', Timings)
+    parameters = 'C(model) + T_n + matches + sqrt_T_n + T_n_sqrd + T_n_cubd'
+    
+    m_setup = sm.OLS.from_formula('setup_time ~ %s'%(parameters), Timings)
+    m_c1 = sm.OLS.from_formula('c1_t ~ %s'%(parameters), Timings)
+    m_c2 = sm.OLS.from_formula('c2_t ~ %s'%(parameters), Timings)
+    m_c3 = sm.OLS.from_formula('c3_t ~ %s'%(parameters), Timings)
+    m_c4 = sm.OLS.from_formula('c4_t ~ %s'%(parameters), Timings)
+    m_solve = sm.OLS.from_formula('solve_time ~ %s'%(parameters), Timings)
     
     models = [m_setup, m_c1, m_c2, m_c3, m_c4, m_solve]
     
