@@ -4,8 +4,12 @@ using DataArrays
 using DataFrames
 using Gadfly
 
-T_pop_full = readcsv("")
-C_pop_full = readcsv("")
+T_pop_full = readcsv("T_pop.csv")
+C_pop_full = readcsv("C_pop.csv")
+
+covars = size(T_pop_full,2)-1
+
+T_pop = convert(DataFrame,T_pop_full[2:size(T_pop_full,1),2:size(T_pop_full,2)])
 
 function shrink_pop(T_pop_full, C_pop_full, T_n)
     T_pop = T_pop_full[1:T_n, :]
@@ -22,7 +26,7 @@ m = Model(solver = GurobiSolver())
 # I, J, K = iterables over their domains
 I = 1:T_n
 J = 1:T_n*30
-K = 1:size(T_pop, 0)
+K = 1:covars
 
 @variable(m, assign[I, J], Bin)
 @variable(m, z[k])
