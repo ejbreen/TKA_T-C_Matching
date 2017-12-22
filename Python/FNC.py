@@ -177,9 +177,9 @@ def setup_julia(dataSet, n):
     T = T.head(n)
     C = C.head(n*30)
     a, b, dist = Pop_Calculations(C, T)
-    csv_write('T_pop_%i'%(dataSet), T)
-    csv_write('C_pop_%i'%(dataSet), C)
-    csv_write('dist_%i'%(dataSet), dist)
+    csv_write('Julia/T_pop_%i'%(dataSet), T)
+    csv_write('Julia/C_pop_%i'%(dataSet), C)
+    csv_write('Julia/dist_%i'%(dataSet), dist)
 
 
 
