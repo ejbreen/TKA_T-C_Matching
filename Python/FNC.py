@@ -28,7 +28,7 @@ def Set_WD():
     def linset():
         linux_login = pd.Series({"Flux":"ejbreen", "pixel":"evan"})
         # change this to pixelbook when running there but change back when done
-        os.chdir(r'/home/%s/TKA_T-C_Matching'%linux_login["Flux"])
+        os.chdir(r'/home/%s/TKA_T-C_Matching'%linux_login["pixel"])
     setdir = {'Windows' : winset,
               'Linux'   : linset}
     setdir[platform.system()]()
@@ -172,13 +172,13 @@ def timing_data_regression(Timings):
     return FNC_regression.timing_data_regression(Timings)
 
 #get the files needed in place to run julia within the Julia folder
-def setup_julia(dataSet, n):
-    T, C = Import_DataSets(dataSet)
-    T = T.head(n)
-    C = C.head(n*30)
+def setup_julia(dataSet, T_n):
+    C, T = Import_DataSets(dataSet)
+    T = T.head(T_n)
+    C = C.head(T_n*30)
     a, b, dist = Pop_Calculations(C, T)
-    csv_write('Julia/T_pop_%i'%(dataSet), T)
-    csv_write('Julia/C_pop_%i'%(dataSet), C)
+    T.to_csv("Julia/T_pop_%i.csv"%(dataSet), index = False)
+    C.to_csv('Julia/C_pop_%i.csv'%(dataSet), index = False)
     csv_write('Julia/dist_%i'%(dataSet), dist)
 
 
