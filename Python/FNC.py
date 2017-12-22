@@ -28,7 +28,7 @@ def Set_WD():
     def linset():
         linux_login = pd.Series({"Flux":"ejbreen", "pixel":"evan"})
         # change this to pixelbook when running there but change back when done
-        os.chdir(r'/home/%s/TKA_T-C_Matching'%linux_login["Flux"])
+        os.chdir(r'/home/%s/TKA_T-C_Matching'%linux_login["pixel"])
     setdir = {'Windows' : winset,
               'Linux'   : linset}
     setdir[platform.system()]()
@@ -55,7 +55,7 @@ def Shrink_pop(C_pop_full, T_pop_full, T_n):
     return C_pop, T_pop
 
 #calculate the min weights, mean_T_pop, and bray curtis distance
-def Pop_Calcuations(C_pop, T_pop):
+def Pop_Calculations(C_pop, T_pop):
     weights = np.tile(len(T_pop)*.1,len(T_pop.columns))
     weights = pd.Series(weights, index = list(T_pop))
     mean_T_pop = T_pop.mean()
@@ -92,7 +92,14 @@ def write_df(Data, message, writer, modelType):
 def write_out(writer):
     writer.save()
     print "data exported to excel"
-
+    
+#a simple writer for CSVs
+def csv_write(fileName, Data):
+    import csv
+    with open('%s.csv'%(fileName), 'wb') as f:
+        writer = csv.writer(f)
+        writer.writerows(Data)
+    print ('%s written as csv'%(fileName))
 
 # models are defined in their own files, this is just meant as a pass 
 # through to FNC so FNC can be a one stop shop
@@ -163,6 +170,16 @@ def compare_MLR(C_pop, T_pop, C_matched):
 
 def timing_data_regression(Timings):
     return FNC_regression.timing_data_regression(Timings)
+
+#get the files needed in place to run julia within the Julia folder
+def setup_julia(dataSet, n):
+    T, C = Import_DataSets(dataSet)
+    T = T.head(n)
+    C = C.head(n*30)
+    a, b, dist = Pop_Calculations(C, T)
+    csv_write('T_pop_%s'%(dataSet), T)
+    csv_write('C_pop_%s'%(dataSet), C)
+    csv_write('dist_%s'%(dataSet), dist)
 
 
 
