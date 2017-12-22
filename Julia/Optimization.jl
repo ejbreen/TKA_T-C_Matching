@@ -26,9 +26,8 @@ end
 T_n = 16
 T_pop, C_pop, dist = shrink_pop(T_pop_full, C_pop_full, dist_full, T_n)
 matches = 5
+
 T_pop_mean = ones(covars)
-
-
 for col in 1:covars
     T_pop_mean[col] = mean(convert(Array, T_pop[:,col]))
 end
@@ -57,12 +56,22 @@ weight = ones(covars)
                         for j=J, i=I) + T_pop_mean[k] <= z[k] )
 
 status = solve(m)
-matched = getvalue(assign)
-
-pass = 1
+matched = ones(J)
 for j = J
-    if sum(matched[i,j] for i = I) == 1
-        if pass == 1
-            C_matched = C_pop[j,:]
-        else
-            push!(C_matched, C_pop[j,:])
+    matched[j] = sum(getvalue(assign[i,j]) for i = I)
+end
+
+C_matched = C_pop[1,:]
+for x=1:T_n*matches
+    push!(C_matched, zeros(21))
+end
+deleterows!(C_matched,1)
+p = 1
+for j = J
+    if matched[j]==1
+        C_matched[p,:] = C_pop[j,:]
+        p = p+1
+    end
+end
+
+writetable("C_1_matched_$T_n .csv", convert(Matrix,C_matched))
