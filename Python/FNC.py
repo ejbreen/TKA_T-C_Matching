@@ -28,7 +28,7 @@ def Set_WD():
     def linset():
         linux_login = pd.Series({"Flux":"ejbreen", "pixel":"evan"})
         # change this to pixelbook when running there but change back when done
-        os.chdir(r'/home/%s/TKA_T-C_Matching'%linux_login["pixel"])
+        os.chdir(r'/home/%s/TKA_T-C_Matching'%linux_login["Flux"])
     setdir = {'Windows' : winset,
               'Linux'   : linset}
     setdir[platform.system()]()
@@ -177,9 +177,9 @@ def setup_julia(dataSet, n):
     T = T.head(n)
     C = C.head(n*30)
     a, b, dist = Pop_Calculations(C, T)
-    csv_write('T_pop_%s'%(dataSet), T)
-    csv_write('C_pop_%s'%(dataSet), C)
-    csv_write('dist_%s'%(dataSet), dist)
+    csv_write('T_pop_%i'%(dataSet), T)
+    csv_write('C_pop_%i'%(dataSet), C)
+    csv_write('dist_%i'%(dataSet), dist)
 
 
 
