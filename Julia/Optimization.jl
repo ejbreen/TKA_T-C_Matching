@@ -8,9 +8,9 @@ using Distances
 using PyCall
 
 
-T_pop_full = CSV.read("T_pop.csv")[:,2:end]
-C_pop_full = CSV.read("C_pop.csv")[:,2:end]
-dist_full = readcsv("dist1.csv")
+T_pop_full = CSV.read("T_pop_1.csv")[:,2:end]
+C_pop_full = CSV.read("C_pop_1.csv")[:,2:end]
+dist_full = readcsv("dist_1.csv")
 # until I can figure out a way to get the distance calculation in julia, I am
 # doing it in python then transfering it over in a csv
 
