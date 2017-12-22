@@ -1,0 +1,417 @@
+Running on
+      1 nyx6170
+Running from /home/ejbreen/TKA_T-C_Matching
+/sw/lsa/centos7/python-anaconda2/created-20170421b/lib/python2.7/site-packages/statsmodels/compat/pandas.py:56: FutureWarning: The pandas.core.datetools module is deprecated and will be removed in a future version. Please use the pandas.tseries module instead.
+  from pandas.core import datetools
+16:45:48 Creating Gurobi Variables
+16:45:48 Creating Gurobi Objective Function
+16:45:48 Creating Gurobi Constraints
+16:45:48 Constraint 1 done
+16:45:48 Constraint 2 done
+16:45:48 Constraint 3 done
+16:45:48 Constraint 4 done
+16:45:48 Start Presolve
+16:45:49 Creating Gurobi Variables
+16:45:49 Creating Gurobi Objective Function
+16:45:49 Creating Gurobi Constraints
+16:45:49 Constraint 1 done
+16:45:49 Constraint 2 done
+16:45:49 Constraint 3 done
+16:45:49 Constraint 4 done
+16:45:49 Start Presolve
+16:45:49 Creating Gurobi Variables
+16:45:49 Creating Gurobi Objective Function
+16:45:49 Creating Gurobi Constraints
+16:45:49 Constraint 1 done
+16:45:50 Constraint 2 done
+16:45:50 Constraint 3 done
+16:45:50 Constraint 4 done
+16:45:50 Start Presolve
+16:45:50 Creating Gurobi Variables
+16:45:50 Creating Gurobi Objective Function
+16:45:50 Creating Gurobi Constraints
+16:45:50 Constraint 1 done
+16:45:50 Constraint 2 done
+16:45:50 Constraint 3 done
+16:45:51 Constraint 4 done
+16:45:51 Start Presolve
+16:45:51 Creating Gurobi Variables
+16:45:51 Creating Gurobi Objective Function
+16:45:51 Creating Gurobi Constraints
+16:45:51 Constraint 1 done
+16:45:51 Constraint 2 done
+16:45:51 Constraint 3 done
+16:45:51 Constraint 4 done
+16:45:51 Start Presolve
+Data set 2, treatment set size 4 complete
+16:45:51 Creating Gurobi Variables
+16:45:51 Creating Gurobi Objective Function
+16:45:51 Creating Gurobi Constraints
+16:45:51 Constraint 1 done
+16:45:53 Constraint 2 done
+16:45:53 Constraint 3 done
+16:45:54 Constraint 4 done
+16:45:54 Start Presolve
+16:45:54 Creating Gurobi Variables
+16:45:54 Creating Gurobi Objective Function
+16:45:54 Creating Gurobi Constraints
+16:45:54 Constraint 1 done
+16:45:56 Constraint 2 done
+16:45:56 Constraint 3 done
+16:45:57 Constraint 4 done
+16:45:57 Start Presolve
+16:45:57 Creating Gurobi Variables
+16:45:57 Creating Gurobi Objective Function
+16:45:57 Creating Gurobi Constraints
+16:45:57 Constraint 1 done
+16:45:59 Constraint 2 done
+16:45:59 Constraint 3 done
+16:46:0 Constraint 4 done
+16:46:0 Start Presolve
+16:46:0 Creating Gurobi Variables
+16:46:0 Creating Gurobi Objective Function
+16:46:0 Creating Gurobi Constraints
+16:46:0 Constraint 1 done
+16:46:1 Constraint 2 done
+16:46:2 Constraint 3 done
+16:46:2 Constraint 4 done
+16:46:2 Start Presolve
+16:46:3 Creating Gurobi Variables
+16:46:3 Creating Gurobi Objective Function
+16:46:3 Creating Gurobi Constraints
+16:46:3 Constraint 1 done
+16:46:4 Constraint 2 done
+16:46:5 Constraint 3 done
+16:46:5 Constraint 4 done
+16:46:5 Start Presolve
+Data set 2, treatment set size 8 complete
+16:46:5 Creating Gurobi Variables
+16:46:5 Creating Gurobi Objective Function
+16:46:5 Creating Gurobi Constraints
+16:46:6 Constraint 1 done
+16:46:16 Constraint 2 done
+16:46:18 Constraint 3 done
+16:46:20 Constraint 4 done
+16:46:20 Start Presolve
+16:46:21 Creating Gurobi Variables
+16:46:21 Creating Gurobi Objective Function
+16:46:21 Creating Gurobi Constraints
+16:46:22 Constraint 1 done
+16:46:32 Constraint 2 done
+16:46:34 Constraint 3 done
+16:46:36 Constraint 4 done
+16:46:36 Start Presolve
+16:46:37 Creating Gurobi Variables
+16:46:37 Creating Gurobi Objective Function
+16:46:37 Creating Gurobi Constraints
+16:46:37 Constraint 1 done
+16:46:48 Constraint 2 done
+16:46:50 Constraint 3 done
+16:46:52 Constraint 4 done
+16:46:52 Start Presolve
+16:46:52 Creating Gurobi Variables
+16:46:52 Creating Gurobi Objective Function
+16:46:52 Creating Gurobi Constraints
+16:46:53 Constraint 1 done
+16:47:3 Constraint 2 done
+16:47:5 Constraint 3 done
+16:47:7 Constraint 4 done
+16:47:7 Start Presolve
+16:47:8 Creating Gurobi Variables
+16:47:8 Creating Gurobi Objective Function
+16:47:8 Creating Gurobi Constraints
+16:47:8 Constraint 1 done
+16:47:19 Constraint 2 done
+16:47:21 Constraint 3 done
+16:47:23 Constraint 4 done
+16:47:23 Start Presolve
+Data set 2, treatment set size 16 complete
+16:47:23 Creating Gurobi Variables
+16:47:24 Creating Gurobi Objective Function
+16:47:24 Creating Gurobi Constraints
+16:47:28 Constraint 1 done
+16:48:52 Constraint 2 done
+16:49:0 Constraint 3 done
+16:49:8 Constraint 4 done
+16:49:8 Start Presolve
+16:49:9 Creating Gurobi Variables
+16:49:9 Creating Gurobi Objective Function
+16:49:10 Creating Gurobi Constraints
+16:49:13 Constraint 1 done
+16:50:38 Constraint 2 done
+16:50:47 Constraint 3 done
+16:50:55 Constraint 4 done
+16:50:55 Start Presolve
+16:50:56 Creating Gurobi Variables
+16:50:56 Creating Gurobi Objective Function
+16:50:56 Creating Gurobi Constraints
+16:51:0 Constraint 1 done
+16:52:24 Constraint 2 done
+16:52:32 Constraint 3 done
+16:52:40 Constraint 4 done
+16:52:40 Start Presolve
+16:52:42 Creating Gurobi Variables
+16:52:42 Creating Gurobi Objective Function
+16:52:42 Creating Gurobi Constraints
+16:52:46 Constraint 1 done
+16:54:14 Constraint 2 done
+16:54:23 Constraint 3 done
+16:54:31 Constraint 4 done
+16:54:31 Start Presolve
+16:54:32 Creating Gurobi Variables
+16:54:33 Creating Gurobi Objective Function
+16:54:33 Creating Gurobi Constraints
+16:54:37 Constraint 1 done
+16:56:5 Constraint 2 done
+16:56:14 Constraint 3 done
+16:56:22 Constraint 4 done
+16:56:22 Start Presolve
+Data set 2, treatment set size 32 complete
+16:56:23 Creating Gurobi Variables
+16:56:24 Creating Gurobi Objective Function
+16:56:25 Creating Gurobi Constraints
+16:57:4 Constraint 1 done
+17:10:39 Constraint 2 done
+17:11:18 Constraint 3 done
+17:11:56 Constraint 4 done
+17:11:56 Start Presolve
+17:12:0 Creating Gurobi Variables
+17:12:1 Creating Gurobi Objective Function
+17:12:3 Creating Gurobi Constraints
+17:12:41 Constraint 1 done
+17:26:5 Constraint 2 done
+17:26:44 Constraint 3 done
+17:27:22 Constraint 4 done
+17:27:22 Start Presolve
+17:27:26 Creating Gurobi Variables
+17:27:27 Creating Gurobi Objective Function
+17:27:28 Creating Gurobi Constraints
+17:28:7 Constraint 1 done
+17:41:25 Constraint 2 done
+17:42:3 Constraint 3 done
+17:42:41 Constraint 4 done
+17:42:41 Start Presolve
+Data set 2, treatment set size 64 complete
+17:42:45 Creating Gurobi Variables
+17:42:48 Creating Gurobi Objective Function
+17:43:3 Creating Gurobi Constraints
+17:49:24 Constraint 1 done
+20:48:31 Constraint 2 done
+20:51:58 Constraint 3 done
+20:55:23 Constraint 4 done
+20:55:24 Start Presolve
+20:55:47 Creating Gurobi Variables
+20:55:50 Creating Gurobi Objective Function
+20:56:6 Creating Gurobi Constraints
+21:2:42 Constraint 1 done
+0:12:7 Constraint 2 done
+0:15:32 Constraint 3 done
+0:18:59 Constraint 4 done
+0:19:0 Start Presolve
+Data set 2, treatment set size 128 complete
+0:19:23 Creating Gurobi Variables
+0:19:34 Creating Gurobi Objective Function
+0:24:56 Creating Gurobi Constraints
+1:24:37 Constraint 1 done
+11:20:4 Constraint 2 done
+11:42:15 Constraint 3 done
+12:4:24 Constraint 4 done
+12:4:28 Start Presolve
+12:7:28 Creating Gurobi Variables
+12:7:39 Creating Gurobi Objective Function
+12:12:52 Creating Gurobi Constraints
+13:14:36 Constraint 1 done
+23:2:31 Constraint 2 done
+23:25:37 Constraint 3 done
+23:48:42 Constraint 4 done
+23:48:47 Start Presolve
+Data set 2, treatment set size 256 complete
+23:51:52 Creating Gurobi Variables
+23:51:52 Creating Gurobi Objective Function
+23:51:52 Creating Gurobi Constraints
+23:51:52 Constraint 1 done
+23:51:52 Constraint 2 done
+23:51:53 Constraint 3 done
+23:51:53 Constraint 4 done
+23:51:55 Start Presolve
+23:51:55 Creating Gurobi Variables
+23:51:55 Creating Gurobi Objective Function
+23:51:55 Creating Gurobi Constraints
+23:51:55 Constraint 1 done
+23:51:55 Constraint 2 done
+23:51:55 Constraint 3 done
+23:51:56 Constraint 4 done
+23:51:56 Start Presolve
+23:51:56 Creating Gurobi Variables
+23:51:56 Creating Gurobi Objective Function
+23:51:56 Creating Gurobi Constraints
+23:51:56 Constraint 1 done
+23:51:56 Constraint 2 done
+23:51:56 Constraint 3 done
+23:51:56 Constraint 4 done
+23:51:56 Start Presolve
+23:51:56 Creating Gurobi Variables
+23:51:56 Creating Gurobi Objective Function
+23:51:56 Creating Gurobi Constraints
+23:51:56 Constraint 1 done
+23:51:57 Constraint 2 done
+23:51:57 Constraint 3 done
+23:51:57 Constraint 4 done
+23:51:57 Start Presolve
+23:51:57 Creating Gurobi Variables
+23:51:57 Creating Gurobi Objective Function
+23:51:57 Creating Gurobi Constraints
+23:51:57 Constraint 1 done
+23:51:58 Constraint 2 done
+23:51:58 Constraint 3 done
+23:51:58 Constraint 4 done
+23:51:58 Start Presolve
+Data set 3, treatment set size 4 complete
+23:51:58 Creating Gurobi Variables
+23:51:58 Creating Gurobi Objective Function
+23:51:58 Creating Gurobi Constraints
+23:51:58 Constraint 1 done
+23:52:0 Constraint 2 done
+23:52:0 Constraint 3 done
+23:52:1 Constraint 4 done
+23:52:1 Start Presolve
+23:52:1 Creating Gurobi Variables
+23:52:1 Creating Gurobi Objective Function
+23:52:1 Creating Gurobi Constraints
+23:52:1 Constraint 1 done
+23:52:3 Constraint 2 done
+23:52:3 Constraint 3 done
+23:52:4 Constraint 4 done
+23:52:4 Start Presolve
+23:52:4 Creating Gurobi Variables
+23:52:4 Creating Gurobi Objective Function
+23:52:4 Creating Gurobi Constraints
+23:52:4 Constraint 1 done
+23:52:6 Constraint 2 done
+23:52:6 Constraint 3 done
+23:52:7 Constraint 4 done
+23:52:7 Start Presolve
+23:52:7 Creating Gurobi Variables
+23:52:7 Creating Gurobi Objective Function
+23:52:7 Creating Gurobi Constraints
+23:52:7 Constraint 1 done
+23:52:9 Constraint 2 done
+23:52:9 Constraint 3 done
+23:52:10 Constraint 4 done
+23:52:10 Start Presolve
+23:52:10 Creating Gurobi Variables
+23:52:10 Creating Gurobi Objective Function
+23:52:10 Creating Gurobi Constraints
+23:52:10 Constraint 1 done
+23:52:12 Constraint 2 done
+23:52:13 Constraint 3 done
+23:52:13 Constraint 4 done
+23:52:13 Start Presolve
+Data set 3, treatment set size 8 complete
+23:52:13 Creating Gurobi Variables
+23:52:13 Creating Gurobi Objective Function
+23:52:13 Creating Gurobi Constraints
+23:52:14 Constraint 1 done
+23:52:26 Constraint 2 done
+23:52:28 Constraint 3 done
+23:52:30 Constraint 4 done
+23:52:30 Start Presolve
+23:52:30 Creating Gurobi Variables
+23:52:30 Creating Gurobi Objective Function
+23:52:31 Creating Gurobi Constraints
+23:52:31 Constraint 1 done
+23:52:43 Constraint 2 done
+23:52:45 Constraint 3 done
+23:52:47 Constraint 4 done
+23:52:47 Start Presolve
+23:52:47 Creating Gurobi Variables
+23:52:47 Creating Gurobi Objective Function
+23:52:48 Creating Gurobi Constraints
+23:52:48 Constraint 1 done
+23:52:59 Constraint 2 done
+23:53:1 Constraint 3 done
+23:53:3 Constraint 4 done
+23:53:3 Start Presolve
+23:53:4 Creating Gurobi Variables
+23:53:4 Creating Gurobi Objective Function
+23:53:4 Creating Gurobi Constraints
+23:53:4 Constraint 1 done
+23:53:16 Constraint 2 done
+23:53:18 Constraint 3 done
+23:53:20 Constraint 4 done
+23:53:20 Start Presolve
+23:53:20 Creating Gurobi Variables
+23:53:20 Creating Gurobi Objective Function
+23:53:20 Creating Gurobi Constraints
+23:53:21 Constraint 1 done
+23:53:32 Constraint 2 done
+23:53:34 Constraint 3 done
+23:53:36 Constraint 4 done
+23:53:36 Start Presolve
+Data set 3, treatment set size 16 complete
+23:53:37 Creating Gurobi Variables
+23:53:37 Creating Gurobi Objective Function
+23:53:37 Creating Gurobi Constraints
+23:53:41 Constraint 1 done
+23:55:10 Constraint 2 done
+23:55:18 Constraint 3 done
+23:55:27 Constraint 4 done
+23:55:27 Start Presolve
+23:55:28 Creating Gurobi Variables
+23:55:28 Creating Gurobi Objective Function
+23:55:28 Creating Gurobi Constraints
+23:55:32 Constraint 1 done
+23:57:2 Constraint 2 done
+23:57:10 Constraint 3 done
+23:57:19 Constraint 4 done
+23:57:19 Start Presolve
+23:57:20 Creating Gurobi Variables
+23:57:20 Creating Gurobi Objective Function
+23:57:21 Creating Gurobi Constraints
+23:57:25 Constraint 1 done
+23:58:53 Constraint 2 done
+23:59:2 Constraint 3 done
+23:59:11 Constraint 4 done
+23:59:11 Start Presolve
+23:59:12 Creating Gurobi Variables
+23:59:12 Creating Gurobi Objective Function
+23:59:12 Creating Gurobi Constraints
+23:59:16 Constraint 1 done
+0:0:45 Constraint 2 done
+0:0:53 Constraint 3 done
+0:1:2 Constraint 4 done
+0:1:2 Start Presolve
+0:1:3 Creating Gurobi Variables
+0:1:3 Creating Gurobi Objective Function
+0:1:3 Creating Gurobi Constraints
+0:1:7 Constraint 1 done
+0:2:36 Constraint 2 done
+0:2:45 Constraint 3 done
+0:2:53 Constraint 4 done
+0:2:53 Start Presolve
+Data set 3, treatment set size 32 complete
+0:2:54 Creating Gurobi Variables
+0:2:55 Creating Gurobi Objective Function
+0:2:57 Creating Gurobi Constraints
+0:3:38 Constraint 1 done
+0:18:40 Constraint 2 done
+0:19:20 Constraint 3 done
+0:20:1 Constraint 4 done
+0:20:1 Start Presolve
+0:20:5 Creating Gurobi Variables
+0:20:6 Creating Gurobi Objective Function
+0:20:7 Creating Gurobi Constraints
+0:20:49 Constraint 1 done
+0:36:6 Constraint 2 done
+0:36:47 Constraint 3 done
+0:37:28 Constraint 4 done
+0:37:29 Start Presolve
+0:37:33 Creating Gurobi Variables
+0:37:34 Creating Gurobi Objective Function
+0:37:35 Creating Gurobi Constraints
+0:38:17 Constraint 1 done
+0:53:37 Constraint 2 done
+0:54:19 Constraint 3 done
+0:55:0 Constraint 4 done
+0:55:0 Start Presolve
+=>> PBS: job killed: walltime 432002 exceeded limit 432000

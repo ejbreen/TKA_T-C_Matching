@@ -1,0 +1,15 @@
+Running on
+      1 nyx6176
+Running from /home/ejbreen/TKA_T-C_Matching
+Data set 2, treatment set size 4 complete
+Data set 2, treatment set size 8 complete
+Data set 2, treatment set size 16 complete
+Data set 2, treatment set size 32 complete
+Data set 2, treatment set size 64 complete
+Data set 2, treatment set size 128 complete
+Data set 2, treatment set size 256 complete
+Data set 3, treatment set size 4 complete
+Data set 3, treatment set size 8 complete
+Data set 3, treatment set size 16 complete
+Data set 3, treatment set size 32 complete
+=>> PBS: job killed: walltime 432034 exceeded limit 432000
