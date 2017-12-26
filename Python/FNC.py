@@ -28,7 +28,7 @@ def Set_WD():
     def linset():
         linux_login = pd.Series({"Flux":"ejbreen", "pixel":"evan"})
         # change this to pixelbook when running there but change back when done
-        os.chdir(r'/home/%s/TKA_T-C_Matching'%linux_login["pixel"])
+        os.chdir(r'/home/%s/TKA_T-C_Matching'%linux_login["Flux"])
     setdir = {'Windows' : winset,
               'Linux'   : linset}
     setdir[platform.system()]()
